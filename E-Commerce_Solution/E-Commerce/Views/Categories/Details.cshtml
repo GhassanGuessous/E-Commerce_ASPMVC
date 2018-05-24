@@ -1,0 +1,26 @@
+﻿@model E_Commerce.Models.Categorie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Categorie</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomCat)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomCat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RefCat }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
