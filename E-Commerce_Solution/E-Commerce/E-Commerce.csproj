@@ -170,6 +170,18 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Gridmvc.css" />
+    <Content Include="Content\templateOne\animate.min.css" />
+    <Content Include="Content\templateOne\bootstrap.min.css" />
+    <Content Include="Content\templateOne\custom.css" />
+    <Content Include="Content\templateOne\et-line.css" />
+    <Content Include="Content\templateOne\fontawesome-all.min.css" />
+    <Content Include="Content\templateOne\helper.css" />
+    <Content Include="Content\templateOne\icofont.css" />
+    <Content Include="Content\templateOne\magnific-popup.css" />
+    <Content Include="Content\templateOne\owl.carousel.min.css" />
+    <Content Include="Content\templateOne\owl.theme.default.min.css" />
+    <Content Include="Content\templateOne\style.css" />
+    <Content Include="Content\templateOne\YouTubePopUp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -194,6 +206,13 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\TemplateOne\animated.headline.js" />
+    <Content Include="Scripts\TemplateOne\isotope.pkgd.min.js" />
+    <Content Include="Scripts\TemplateOne\owl.carousel.min.js" />
+    <Content Include="Scripts\TemplateOne\popper.min.js" />
+    <Content Include="Scripts\TemplateOne\scripts.js" />
+    <Content Include="Scripts\TemplateOne\scrollIt.min.js" />
+    <Content Include="Scripts\TemplateOne\YouTubePopUp.jquery.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

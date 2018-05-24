@@ -8,16 +8,13 @@ namespace E_Commerce
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
 
-            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-                        "~/Scripts/jquery.validate*"));
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include("~/Scripts/jquery.validate*"));
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -26,6 +23,36 @@ namespace E_Commerce
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+
+            // template one ::
+            //styles ::
+            bundles.Add(new StyleBundle("~/Content/TemplateOne").Include(
+                     "~/Content/templateOne/bootstrap.min.css",
+                     "~/Content/templateOne/animate.min.css",
+                     "~/Content/templateOne/et-line.css",
+                     "~/Content/templateOne/icofont.css",
+                     "~/Content/templateOne/fontawesome-all.min.css",
+                     "~/Content/templateOne/YouTubePopUp.css",
+                     "~/Content/templateOne/magnific-popup.css",
+                     "~/Content/templateOne/owl.carousel.min.css",
+                     "~/Content/templateOne/owl.theme.default.min.css",
+                     "~/Content/templateOne/helper.css",
+                     "~/Content/templateOne/style.css",
+                     "~/Content/templateOne/custom.css"
+                     ));
+
+            //scripts ::
+            bundles.Add(new ScriptBundle("~/bundles/TemplateOne").Include(
+                     "~/Scripts/TemplateOne/popper.min.js",
+                     "~/Scripts/TemplateOne/scrollIt.min.js",
+                     "~/Scripts/TemplateOne/animated.headline.js",
+                     "~/Scripts/TemplateOne/owl.carousel.min.js",
+                     "~/Scripts/TemplateOne/isotope.pkgd.min.js",
+                     "~/Scripts/TemplateOne/YouTubePopUp.jquery.js",
+                     "~/Scripts/TemplateOne/scripts.js"
+                     ));
+
         }
     }
 }
