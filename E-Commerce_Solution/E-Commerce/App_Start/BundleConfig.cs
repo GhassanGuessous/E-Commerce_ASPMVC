@@ -44,10 +44,17 @@ namespace E_Commerce
 
             //scripts ::
             bundles.Add(new ScriptBundle("~/bundles/TemplateOne").Include(
-                     "~/Scripts/TemplateOne/popper.min.js",
+                    "~/Scripts/TemplateOne/jquery-3.0.0.min.js",
+                    "~/Scripts/TemplateOne/jquery-migrate-3.0.0.min.js",
+                    "~/Scripts/TemplateOne/popper.min.js",
+                    "~/Scripts/TemplateOne/bootstrap.min.js",
                      "~/Scripts/TemplateOne/scrollIt.min.js",
                      "~/Scripts/TemplateOne/animated.headline.js",
+                     "~/Scripts/TemplateOne/jquery.waypoints.min.js",
+                     "~/Scripts/TemplateOne/jquery.counterup.min.js",
                      "~/Scripts/TemplateOne/owl.carousel.min.js",
+                     "~/Scripts/TemplateOne/jquery.magnific-popup.min.js",
+                     "~/Scripts/TemplateOne/jquery.stellar.min.js",
                      "~/Scripts/TemplateOne/isotope.pkgd.min.js",
                      "~/Scripts/TemplateOne/YouTubePopUp.jquery.js",
                      "~/Scripts/TemplateOne/scripts.js"

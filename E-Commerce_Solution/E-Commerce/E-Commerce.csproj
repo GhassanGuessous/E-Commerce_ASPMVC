@@ -186,6 +186,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="images\templateOne\bg.jpg" />
+    <Content Include="images\templateOne\logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -207,7 +209,14 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\TemplateOne\animated.headline.js" />
+    <Content Include="Scripts\TemplateOne\bootstrap.min.js" />
     <Content Include="Scripts\TemplateOne\isotope.pkgd.min.js" />
+    <Content Include="Scripts\TemplateOne\jquery-3.0.0.min.js" />
+    <Content Include="Scripts\TemplateOne\jquery-migrate-3.0.0.min.js" />
+    <Content Include="Scripts\TemplateOne\jquery.counterup.min.js" />
+    <Content Include="Scripts\TemplateOne\jquery.magnific-popup.min.js" />
+    <Content Include="Scripts\TemplateOne\jquery.stellar.min.js" />
+    <Content Include="Scripts\TemplateOne\jquery.waypoints.min.js" />
     <Content Include="Scripts\TemplateOne\owl.carousel.min.js" />
     <Content Include="Scripts\TemplateOne\popper.min.js" />
     <Content Include="Scripts\TemplateOne\scripts.js" />
