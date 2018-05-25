@@ -13,18 +13,26 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public String ConsulterCatalogues()
         {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
+            return "Consulter les Catalogues";
         }
 
-        public ActionResult Contact()
+        public String VisualiserPanier()
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            return "Visualiser votre Panier";
         }
+
+        public String Convertisseur()
+        {
+            return "Convertisseur !";
+        }
+
+        public String LancerCommandes()
+        {
+            return "Lancer des Commandes";
+        }
+
+
     }
 }

@@ -57,6 +57,8 @@ namespace E_Commerce
                      "~/Scripts/TemplateOne/jquery.stellar.min.js",
                      "~/Scripts/TemplateOne/isotope.pkgd.min.js",
                      "~/Scripts/TemplateOne/YouTubePopUp.jquery.js",
+                     "~/Scripts/TemplateOne/map.js",
+                     "~/Scripts/TemplateOne/validator.js",
                      "~/Scripts/TemplateOne/scripts.js"
                      ));
 
