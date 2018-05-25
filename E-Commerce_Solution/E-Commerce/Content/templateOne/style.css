@@ -349,6 +349,11 @@ span, a, a:hover {
   -webkit-animation-delay: 1.2s;
           animation-delay: 1.2s;
 }
+
+.ttest:hover{
+    color:black;
+}
+
 .header .caption .butn:after {
   content: '';
   width: 0;

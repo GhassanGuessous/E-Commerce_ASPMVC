@@ -13,6 +13,11 @@ namespace E_Commerce.Controllers
             return View();
         }
 
+        public ActionResult Accueil()
+        {
+            return View();
+        }
+
         public String ConsulterCatalogues()
         {
             return "Consulter les Catalogues";
@@ -33,6 +38,19 @@ namespace E_Commerce.Controllers
             return "Lancer des Commandes";
         }
 
+        public ActionResult Login()
+        {
+            return RedirectToAction("Accueil");
+        }
 
+        public String Inscription()
+        {
+            return "Nouvelle Inscription !";
+        }
+
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Index");
+        }
     }
 }
