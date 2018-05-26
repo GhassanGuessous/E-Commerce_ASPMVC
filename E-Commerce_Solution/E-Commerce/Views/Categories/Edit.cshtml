@@ -1,5 +1,6 @@
 ﻿@model E_Commerce.Models.Categorie
 
+
 @{
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Edit";
@@ -17,10 +18,12 @@
         <div class="form-group">
             @Html.Label("nom de catégorie", htmlAttributes: new { @class = "control-label " })
 
+
             @Html.EditorFor(model => model.NomCat, new { htmlAttributes = new { @class = "form-control input-lg" } })
             @Html.ValidationMessageFor(model => model.RefCat, "", new { @class = "text-danger " })
             <input type="submit" value="Valider" class="btn btn-info" />
             <input type="reset" value="Annuler" class="btn btn-primary" />
+               @Html.HiddenFor(model => model.RefCat)
         </div>
 
 
@@ -30,5 +33,6 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
 
 

@@ -59,9 +59,55 @@ namespace E_Commerce.Controllers
         }
 
 
+      public ActionResult Edit(int id)
+        {
+            Categorie categorie = new Categorie();
+
+            categorie = GetCategorie(id);
 
 
+            return View(categorie);
+        }
+        public Categorie  GetCategorie(int id)
+        {
+            Conction();
+            HttpResponseMessage response = client.GetAsync("api/SeulCategorie/" + id).Result;
+            return response.Content.ReadAsAsync<Categorie>().Result;
+        }
+        public ActionResult Delete(int id)
+        {
+            Categorie categorie = new Categorie();
 
+            categorie = GetCategorie(id);
+            return View(categorie);
+        }[HttpPost]
+        public ActionResult Delete(Categorie categorie)
+        {
+            Conction();       
+        var message = client.DeleteAsync("api/DeleteCategorie/" + categorie.RefCat).Result;
+            if (message.IsSuccessStatusCode) {
+            return RedirectToAction("Index");
+            }
+            else { return View(); }
+        }
+        [HttpPost]
+        public ActionResult Edit(Categorie categorie)
+        {
+            Conction();
+            var message = client.PutAsJsonAsync("api/Categorie", categorie).Result;
+            if (message.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else { return View(); }
+        }
+        /*
+        public ActionResult ModifierEtudiant(Etudiant etudiant)
+        {
+            Conction();
+            var message = client.PutAsJsonAsync("api/Etudiant", etudiant).Result;
+            return RedirectToAction("Index");
+        }
 
         // GET: Categories/Details/5
         /* public ActionResult Details(int? id)

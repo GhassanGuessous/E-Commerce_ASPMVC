@@ -11,39 +11,39 @@ namespace WebAPI_E_Commerce.Controllers
 {
     public class CategorieController : ApiController
     {
-       
-            /*  BD_ASPMVCEntities db = new BD_ASPMVCEntities();
-              public IEnumerable<Categorie> Get()
-              {
 
-                  return db.Categories.ToList();
-              }
-              */
-            public IEnumerable<Category> Get()
+        /*  BD_ASPMVCEntities db = new BD_ASPMVCEntities();
+          public IEnumerable<Categorie> Get()
+          {
+
+              return db.Categories.ToList();
+          }
+          */
+        public IEnumerable<Category> Get()
+        {
+            ICategorie categorie = new CategorieImpl();
+            return categorie.AllCategorie();
+        }
+        public IHttpActionResult Get(int id)
+        {
+
+            IEnumerable<Article> articles = new List<Article>();
+
+            ICategorie categorie = new CategorieImpl();
+
+            articles = categorie.AllArticle(id);
+            if (articles == null)
             {
-                ICategorie categorie = new CategorieImpl();
-                return categorie.AllCategorie();
+
+                return NotFound();
             }
-            public IHttpActionResult Get(int id)
-            {
-
-                IEnumerable<Article> articles = new List<Article>();
-
-                ICategorie categorie = new CategorieImpl();
-
-                articles = categorie.AllArticle(id);
-                if (articles == null)
-                {
-
-                    return NotFound();
-                }
-                return Ok(articles);
-            }
+            return Ok(articles);
+        }
 
 
 
 
-        public IHttpActionResult Postetudiant(Category categorie)
+        public IHttpActionResult PostCategorie(Category categorie)
         {
             if (!ModelState.IsValid)
             {
@@ -55,6 +55,35 @@ namespace WebAPI_E_Commerce.Controllers
             return Ok(categorie);
 
         }
+        public IHttpActionResult PutCategorie(Category categorie)
+        {
+            ICategorie categories = new CategorieImpl();
+            categories.ModifierCategorie(categorie);
 
+    
+             return Ok(categorie);
+        }
+        [Route("api/DeleteCategorie/{id}")]
+        public IHttpActionResult DeleteCategorie(int  id)
+        {
+            ICategorie categories = new CategorieImpl();
+            categories.SupprimerCategorie(id);
+
+
+            return Ok();
+        }
+        [Route("api/SeulCategorie/{id1}")]
+        public IHttpActionResult GetCategorie(int id1)
+        {
+
+            ICategorie categories = new CategorieImpl();
+            Category categorie = new Category();
+            categorie=categories.GetCategorie(id1);
+
+            return Ok(categorie);
+
+           
+
+        }
     }
-    }
+}

@@ -11,13 +11,20 @@ namespace WebAPI_E_Commerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Commande
     {
+        [DataMember]
         public int NumCmd { get; set; }
+        [DataMember]
         public string DateCmd { get; set; }
+        [DataMember]
         public int NumClient { get; set; }
+        [DataMember]
         public int NumArticle { get; set; }
+        [DataMember]
         public int QteArticle { get; set; }
     
         public virtual Article Article { get; set; }

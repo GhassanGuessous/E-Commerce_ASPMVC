@@ -11,7 +11,9 @@ namespace WebAPI_E_Commerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Category
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,8 +21,9 @@ namespace WebAPI_E_Commerce.Models
         {
             this.Articles = new HashSet<Article>();
         }
-    
+        [DataMember]
         public int RefCat { get; set; }
+        [DataMember]
         public string NomCat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

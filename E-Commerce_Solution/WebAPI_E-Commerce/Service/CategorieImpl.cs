@@ -28,5 +28,24 @@ namespace WebAPI_E_Commerce.Service
             db.Categories.Add(categorie);
             db.SaveChanges();
         }
+
+        public void ModifierCategorie(Category categorie)
+        {
+            db.Entry(categorie).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+        public Category GetCategorie(int id)
+        {
+            return db.Categories.Find(id);
+          
+        }
+
+        public void SupprimerCategorie(int id)
+        {
+            Category categorie = GetCategorie(id);
+            db.Categories.Remove(categorie);
+            db.SaveChanges();
+
+        }
     }
 }

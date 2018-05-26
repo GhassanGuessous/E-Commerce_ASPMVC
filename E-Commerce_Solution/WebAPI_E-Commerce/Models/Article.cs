@@ -11,7 +11,9 @@ namespace WebAPI_E_Commerce.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract]
     public partial class Article
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,12 +21,18 @@ namespace WebAPI_E_Commerce.Models
         {
             this.Commandes = new HashSet<Commande>();
         }
-    
+
+        [DataMember]
         public int NumArticle { get; set; }
+        [DataMember]
         public string Designation { get; set; }
+        [DataMember]
         public double PrixU { get; set; }
+        [DataMember]
         public int Stock { get; set; }
+        [DataMember]
         public string Photo { get; set; }
+        [DataMember]
         public int RefCat { get; set; }
     
         public virtual Category Category { get; set; }
