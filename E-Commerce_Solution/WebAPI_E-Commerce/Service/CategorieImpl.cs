@@ -23,5 +23,10 @@ namespace WebAPI_E_Commerce.Service
             return articles;
         }
 
+        public void AjouterCategorie(Category categorie)
+        {
+            db.Categories.Add(categorie);
+            db.SaveChanges();
+        }
     }
 }

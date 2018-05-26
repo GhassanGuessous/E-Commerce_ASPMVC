@@ -43,7 +43,18 @@ namespace WebAPI_E_Commerce.Controllers
 
 
 
+        public IHttpActionResult Postetudiant(Category categorie)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            ICategorie categories = new CategorieImpl();
+            categories.AjouterCategorie(categorie);
 
+            return Ok(categorie);
 
         }
+
+    }
     }

@@ -12,5 +12,6 @@ namespace WebAPI_E_Commerce.Service
     {
         List<Category> AllCategorie();
         IEnumerable<Article> AllArticle(int id);
+      void AjouterCategorie(Category categorie);
     }
 }
