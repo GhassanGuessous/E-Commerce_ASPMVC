@@ -3,3 +3,100 @@
     ViewBag.Title = "Index";
 }
 
+<!--Login-->
+    <div id="id01" class="modal">        
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="imgcontainer">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="~/images/templateOne/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerPopup">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="uname" required  class="form-control"/>
+
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required class="form-control" />
+            </div>
+
+            <div class="containerFooter" style="background-color:#f1f1f1">
+                <button type="submit" class="btn btn-success">Login</button>
+                <button type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-primary">Cancel</button>
+            </div>
+        </form>
+    </div>
+<!--end login-->
+
+<!--inscription-->
+    <section id="inscription"><br /><br /><br /><br /><br /><br />
+        <div class="offset-md-1 col-md-6">
+            <h1 class="h11">Inscrivez-vous</h1>
+        </div>
+        <form class="form-group" method="post" action="#">
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Nom</b></label>
+                <input type="text" placeholder="votre nom" name="uname" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Prénom</b></label>
+                <input type="text" placeholder="votre prénom" name="uname" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Login</b></label>
+                <input type="text" placeholder="Enter Username" name="login" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Mot de passe</b></label>
+                <input type="password" placeholder="mot de passe" name="uname" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Ressaisir le mot de passe</b></label>
+                <input type="password" placeholder="mot de passe" name="uname" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Email</b></label>
+                <input type="email" placeholder="adresse mail" name="uname" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Ville</b></label>
+                <select name="ville" required class="form-control">
+                    <option>Safi</option>
+                </select>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <label for="uname"><b>Téléphone</b></label>
+                <input type="number" placeholder="numéro de téléphone" name="uname" required class="form-control" />
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="offset-md-3 col-md-6">
+                <button type="submit" name="submin" class="btn btn-primary">Send</button>
+            </div>
+        </div>
+    </form>
+    </section>
+    <br /><br /><br /><br /><br /><br /><br />
+<!--end inscription-->

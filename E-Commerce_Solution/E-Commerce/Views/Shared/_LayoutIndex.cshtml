@@ -32,7 +32,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Se connecter", "Login", "Home", new { @class = "nav-link active" })
+                        <a class = "nav-link active wah" onclick = "document.getElementById('id01').style.display='block'" >Se connecter</a>
                     </li>
                 </ul>
             </div>
@@ -54,7 +54,7 @@
                         </span>
                     </h1>
                     <p>Simplifiez-vous la gestion et la comptabilité de vos achats</p>
-                    <a href="/Home/Inscription" class="butn butn-bg">
+                    <a href="#inscription" class="butn butn-bg">
                         <span>Inscription</span>
                     </a>
                 </div>
@@ -73,6 +73,7 @@
     </div>
 
     @Scripts.Render("~/bundles/TemplateOne")
+    @Scripts.Render("~/bundles/popupScripts")
     @RenderSection("scripts", required: false)
 </body>
 </html>
