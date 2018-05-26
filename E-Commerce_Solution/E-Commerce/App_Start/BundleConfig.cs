@@ -39,7 +39,9 @@ namespace E_Commerce
                      "~/Content/templateOne/owl.theme.default.min.css",
                      "~/Content/templateOne/helper.css",
                      "~/Content/templateOne/style.css",
-                     "~/Content/templateOne/custom.css"
+                     "~/Content/templateOne/custom.css",
+                     "~/Content/popup/mesStyles.css",
+                     "~/Content/templateOne/fontGoogleApi.css"
                      ));
 
             //scripts ::
@@ -60,6 +62,11 @@ namespace E_Commerce
                      "~/Scripts/TemplateOne/map.js",
                      "~/Scripts/TemplateOne/validator.js",
                      "~/Scripts/TemplateOne/scripts.js"
+                     ));
+
+            // popup script
+            bundles.Add(new ScriptBundle("~/bundles/popupScripts").Include(
+                    "~/Scripts/popup/popup.js"
                      ));
 
         }
