@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -39,9 +40,40 @@ namespace E_Commerce.Controllers
         // GET: Commandes/Create
         public ActionResult Create()
         {
-            ViewBag.NumArticle = new SelectList(db.Articles, "NumArticle", "Designation");
-            ViewBag.NumClient = new SelectList(db.Clients, "NumClient", "Login");
+            //ViewBag.NumArticle = new SelectList(db.Articles, "NumArticle", "Designation");
+            //ViewBag.NumClient = new SelectList(db.Clients, "NumClient", "Login");
+            //var cmdArt = (from c in db.Commandes
+            //              join a in db.Articles
+            //              on c.NumArticle equals a.NumArticle
+            //              where c.NumClient == 1
+            //              select new
+            //              {
+            //                  designation = a.Designation,
+            //                  prixU = a.PrixU,
+            //                  photo = a.Photo
+            //              }).ToList();
+
+            ViewBag.ArticlesPanier = db.Commandes.ToList();
+            ViewBag.c = new SelectList(db.Categories, "RefCat", "NomCat");
             return View();
+        }
+
+        public JsonResult GetArticlesByCategorie(int ID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.Articles.Where(c => c.RefCat == ID), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetStockByArticle(int ID)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.Articles.Where(a => a.NumArticle == ID), JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult UpdateList()
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+            return Json(db.Commandes.ToList(), JsonRequestBehavior.AllowGet);
         }
 
         // POST: Commandes/Create
@@ -53,13 +85,22 @@ namespace E_Commerce.Controllers
         {
             if (ModelState.IsValid)
             {
+                // Numero du client est recuperré a partir de la session 
+                commande.NumClient = 1;
+                commande.DateCmd = DateTime.Now.ToString();
                 db.Commandes.Add(commande);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.NumArticle = new SelectList(db.Articles, "NumArticle", "Designation", commande.NumArticle);
-            ViewBag.NumClient = new SelectList(db.Clients, "NumClient", "Login", commande.NumClient);
+                // Mettre a jour le stock
+                Article article = db.Articles.Where(a => a.NumArticle == commande.NumArticle).SingleOrDefault();
+
+                if (article.Stock >= commande.QteArticle)
+                {
+                    article.Stock -= commande.QteArticle;
+                    db.SaveChanges();
+                }
+                return RedirectToAction("Create");
+
+            }
             return View(commande);
         }
 
@@ -132,5 +173,6 @@ namespace E_Commerce.Controllers
             }
             base.Dispose(disposing);
         }
+        
     }
 }

@@ -60,6 +60,13 @@ namespace E_Commerce
                      "~/Scripts/TemplateOne/scripts.js"
                      ));
 
+            // Commande
+            bundles.Add(new ScriptBundle("~/bundles/CommandeAjax").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.validate*",
+                "~/Url/https://unpkg.com/sweetalert/dist/sweetalert.min.js",
+                "~/Scripts/commandeJs.js"));
+
         }
     }
 }
