@@ -13,18 +13,44 @@ namespace E_Commerce.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Accueil()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public String ConsulterCatalogues()
         {
-            ViewBag.Message = "Your contact page.";
+            return "Consulter les Catalogues";
+        }
 
-            return View();
+        public String VisualiserPanier()
+        {
+            return "Visualiser votre Panier";
+        }
+
+        public String Convertisseur()
+        {
+            return "Convertisseur !";
+        }
+
+        public String LancerCommandes()
+        {
+            return "Lancer des Commandes";
+        }
+
+        public ActionResult Login()
+        {
+            return RedirectToAction("Accueil");
+        }
+
+        public String Inscription()
+        {
+            return "Nouvelle Inscription !";
+        }
+
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Index");
         }
     }
 }

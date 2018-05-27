@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/TemplateOne")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <!-- ======================================== Start Loading -->
+    <div class="loading">
+        <div class="text-center middle">
+            <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+        </div>
+    </div>
+    <!-- End Loading ========================================== -->
+
+    <!-- ========================================= Start Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <!-- Logo -->
+            <a class="logo" href="#">
+                <img src="~/images/templateOne/logo1.png" alt="logo">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="icon-bar"><i class="fas fa-bars"></i></span>
+            </button>
+
+            <!-- navbar links -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class = "nav-link active wah" onclick = "document.getElementById('id01').style.display='block'" >Se connecter</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar =========================================== -->
+
+    <header class="header valign bg-img" data-scroll-index="0" data-overlay-dark="5" data-background="../../images/templateOne/bg.jpg" data-stellar-background-ratio="0.5">
+        <div class="container">
+            <div class="row">
+                <div class="full-width text-center caption mt-30">
+                    <h3>Gestion des ventes en ligne</h3>
+                    <h1 class="cd-headline clip">
+                        <span class="blc">The Way Of </span>
+                        <span class="cd-words-wrapper">
+                            <b class="is-visible">Success</b>
+                            <b>Grow Up</b>
+                            <b>Dream</b>
+                        </span>
+                    </h1>
+                    <p>Simplifiez-vous la gestion et la comptabilité de vos achats</p>
+                    <a href="#inscription" class="butn butn-bg">
+                        <span>Inscription</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </header>
+
+    <br /><br />
+
+   
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        
+    </div>
+
+    @Scripts.Render("~/bundles/TemplateOne")
+    @Scripts.Render("~/bundles/popupScripts")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+ 

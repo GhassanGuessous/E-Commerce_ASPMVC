@@ -7,12 +7,13 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using E_Commerce.Models;
+using System.Net.Http;
 
 namespace E_Commerce.Controllers
 {
     public class ClientsController : Controller
     {
-        private E_CommerceContext db = new E_CommerceContext();
+        /*private E_CommerceContext db = new E_CommerceContext();
 
         // GET: Clients
         public ActionResult Index()
@@ -122,6 +123,90 @@ namespace E_Commerce.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }*/
+
+        /******************************Mon code partie client ******************************/
+
+
+
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response;
+        IEnumerable<Categorie> listcategorie;
+        IEnumerable<Article> listarticles;
+        E_CommerceContext db = new E_CommerceContext();
+        IEnumerable<MonPanier> article_panier;
+
+        public void Conction()
+        {
+            client.BaseAddress = new Uri("http://localhost:59467");
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
         }
+
+
+        // GET: Client
+        public ActionResult Index()
+        {
+            Conction();
+            response = client.GetAsync("api/Categorie").Result;
+            listcategorie = response.Content.ReadAsAsync<IEnumerable<Categorie>>().Result;
+
+            ViewBag.e = new SelectList(listcategorie, "RefCat", "NomCat");
+            return View();
+        }
+
+        public PartialViewResult AfficheDetails(int value)
+        {
+
+            ViewBag.e = value;
+
+
+            Conction();
+            HttpResponseMessage response = client.GetAsync("api/Categorie?id=" + value).Result;
+            listarticles = response.Content.ReadAsAsync<IEnumerable<Article>>().Result;
+
+            response = client.GetAsync("api/Categorie").Result;
+
+            return PartialView("_AfficheDetails", listarticles);
+        }
+        public ActionResult Detail(int id1)
+        {
+            Conction();
+            Article article = new Article();
+
+            HttpResponseMessage response = client.GetAsync("api/Article?id=" + id1).Result;
+            article = response.Content.ReadAsAsync<Article>().Result;
+
+            response = client.GetAsync("api/Article").Result;
+
+
+            return View(article);
+        }
+
+
+        /***SNANA**/
+
+        public ActionResult Index_Panier()
+        {
+            //if faut mettre  la session de utilisateur à changer  !!!!!!!!!!!
+
+            int id1 = 1;
+            Conction();
+
+
+            HttpResponseMessage response = client.GetAsync("api/Panier?id=" + id1).Result;
+            article_panier = response.Content.ReadAsAsync<IEnumerable<MonPanier>>().Result;
+
+            response = client.GetAsync("api/Panier").Result;
+
+            return View(article_panier);
+
+
+        }
+
+
+
+
     }
 }

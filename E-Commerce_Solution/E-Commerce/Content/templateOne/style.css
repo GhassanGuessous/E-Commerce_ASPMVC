@@ -265,7 +265,7 @@ span, a, a:hover {
   transition: all .5s;
 }
 .navbar .navbar-nav .active {
-  color: #F24259 !important;
+  color: #3498db !important;
 }
 
 .nav-scroll {
@@ -327,7 +327,7 @@ span, a, a:hover {
           animation-delay: .6s;
 }
 .header .caption h1 b {
-  color: #F24259;
+  color: #3498db;
 }
 .header .caption p {
   font-size: 16px;
@@ -349,6 +349,11 @@ span, a, a:hover {
   -webkit-animation-delay: 1.2s;
           animation-delay: 1.2s;
 }
+
+.ttest:hover{
+    color:black;
+}
+
 .header .caption .butn:after {
   content: '';
   width: 0;
@@ -378,8 +383,8 @@ span, a, a:hover {
   z-index: 2;
 }
 .header .caption .butn-bg {
-  background: #F24259;
-  border-color: #F24259;
+  background: #3498db;
+  border-color: #3498db;
 }
 .header .arrow {
   position: absolute;

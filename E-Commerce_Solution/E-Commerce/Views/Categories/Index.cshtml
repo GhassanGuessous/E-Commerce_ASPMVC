@@ -1,33 +1,40 @@
 ﻿@model IEnumerable<E_Commerce.Models.Categorie>
-
+@using GridMvc.Html
 @{
+    /**/
+
+    /**/
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h3><img src="@Url.Content("~/images/folder.png")" width="40px" height="40px" /><span style="color:gray">Tous les catégories </span></h3>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <span class="glyphicon glyphicon-home tablelien"> Home>Catégorie</span>
+            <span class="pull-right">@Html.ActionLink("Nouveau Catégorie", "Create", "Categories", new { area = "" }, new { @class = "pull - right" })</span>
+        </div>
+    </div>
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.Grid(Model).Columns(columns =>
+       {
+           columns.Add(c => c.NomCat).Titled("Nom de Catégories").Filterable(true);
+           columns.Add().Titled("Modifier")
+                          .Encoded(false)
+                          .Sanitized(false)
+                          .SetWidth(30)
+                          .RenderValueAs(c=> Html.ActionLink("modifier","Edit", "Categories",new { id = c.RefCat},null));
+           columns.Add().Titled("Supprimer")
+             .Encoded(false)
+                          .Sanitized(false)
+                          .SetWidth(30)
+                           .RenderValueAs(c => Html.ActionLink("Supprimer","Delete", "Categories", new { id = c.RefCat},null));
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NomCat)
-        </th>
-        <th></th>
-    </tr>
+       }).WithPaging(3).Sortable(true)
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomCat)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.RefCat }) |
-            @Html.ActionLink("Details", "Details", new { id=item.RefCat }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.RefCat })
-        </td>
-    </tr>
-}
-
-</table>
+        </div>
+    </div>
+</div>
