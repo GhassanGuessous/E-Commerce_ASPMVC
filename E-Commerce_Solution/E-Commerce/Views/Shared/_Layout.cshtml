@@ -8,7 +8,7 @@
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    @*<!-- ======================================== Start Loading -->
+    <!-- ======================================== Start Loading -->
     <div class="loading">
         <div class="text-center middle">
             <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
@@ -42,10 +42,10 @@
                         @Html.ActionLink("Visualiser votre panier", "Index_Panier", "Clients", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                       @Html.ActionLink("Convertisseur", "Convertisseur", "Home", new { @class = "nav-link" })
+                       @Html.ActionLink("Convertisseur", "Index", "CurrencyConverter", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Lancer des commandes", "LancerCommandes", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Lancer des commandes", "Create", "Commandes", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Déconnecter", "Logout", "Home", new { @class = "nav-link" })

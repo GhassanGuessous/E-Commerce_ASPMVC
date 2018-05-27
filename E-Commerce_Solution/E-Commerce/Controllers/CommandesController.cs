@@ -40,22 +40,21 @@ namespace E_Commerce.Controllers
         // GET: Commandes/Create
         public ActionResult Create()
         {
-            //ViewBag.NumArticle = new SelectList(db.Articles, "NumArticle", "Designation");
-            //ViewBag.NumClient = new SelectList(db.Clients, "NumClient", "Login");
-            //var cmdArt = (from c in db.Commandes
-            //              join a in db.Articles
-            //              on c.NumArticle equals a.NumArticle
-            //              where c.NumClient == 1
-            //              select new
-            //              {
-            //                  designation = a.Designation,
-            //                  prixU = a.PrixU,
-            //                  photo = a.Photo
-            //              }).ToList();
-
-            ViewBag.ArticlesPanier = db.Commandes.ToList();
+            List<Commande> cmds = db.Commandes.Where(c => c.NumClient == 1).ToList();
+            ViewBag.ArticlesPanier = GetArticlesByCmds(cmds);
             ViewBag.c = new SelectList(db.Categories, "RefCat", "NomCat");
             return View();
+        }
+
+        public List<Article> GetArticlesByCmds(List<Commande> cmds)
+        {
+            List<Article> arts = new List<Article>();
+            foreach (Commande cmd in cmds)
+            {
+                Article art = db.Articles.Where(a => a.NumArticle == cmd.NumArticle).First();
+                arts.Add(art);
+            }
+            return arts;
         }
 
         public JsonResult GetArticlesByCategorie(int ID)
