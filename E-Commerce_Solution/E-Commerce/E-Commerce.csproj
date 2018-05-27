@@ -169,6 +169,7 @@
     <Compile Include="Controllers\ClientsController.cs" />
     <Compile Include="Controllers\CommandesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\StatistiquesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +179,7 @@
     <Compile Include="Models\Commande.cs" />
     <Compile Include="Models\E_CommerceContext.cs" />
     <Compile Include="Models\MonPanier.cs" />
+    <Compile Include="Models\NumberCommandePerArticle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +241,8 @@
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="bootstrap\fonts\glyphicons-halflings-regular.woff2" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\chart\exporting.js" />
+    <Content Include="Scripts\chart\highcharts.js" />
     <Content Include="Scripts\gridmvc.js" />
     <Content Include="Scripts\gridmvc.lang.ru.js" />
     <Content Include="Scripts\gridmvc.min.js" />
@@ -278,11 +282,12 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Web.config" />
+    <Content Include="Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
     <Content Include="Views\Clients\Create.cshtml" />
@@ -303,7 +308,6 @@
     <Content Include="Views\Commandes\Details.cshtml" />
     <Content Include="Views\Commandes\Edit.cshtml" />
     <Content Include="Views\Commandes\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
     <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Views\Shared\_AfficheDetails.cshtml" />
@@ -311,6 +315,9 @@
     <Content Include="Views\Clients\Index_Panier.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Statistiques\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Accueil.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
