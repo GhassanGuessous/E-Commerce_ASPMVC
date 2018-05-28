@@ -45,7 +45,7 @@ return Ok(article);
             return Ok(article);
         }
         [Route("api/DeleteArticle/{id}")]
-        public IHttpActionResult DeleteCategorie(int id)
+        public IHttpActionResult DeleteArticle(int id)
         {
             IArticle articles = new ArticleImpl();
             articles.SupprimerArticlee(id);

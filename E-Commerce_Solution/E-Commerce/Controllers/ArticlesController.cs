@@ -26,7 +26,12 @@ namespace E_Commerce.Controllers
 
 
         }
-
+        public Article GetArticle(int id)
+        {
+            Conction();
+            HttpResponseMessage response = client.GetAsync("api/Article/" + id).Result;
+            return response.Content.ReadAsAsync<Article>().Result;
+        }
 
         public PartialViewResult  AffichesCategrie(int value)
         {
@@ -55,6 +60,7 @@ namespace E_Commerce.Controllers
             return PartialView("_AffichesArticles", article);
 
         }
+
         public ActionResult Index()
         {
             Conction();
@@ -73,12 +79,83 @@ namespace E_Commerce.Controllers
             ViewBag.RefCat = new SelectList(listcategorie, "RefCat", "NomCat");
             return View();
         }
+    
+
+
+
+
+
+public ActionResult Delete(int id)
+        {
+           
+            Article article = GetArticle(id);
+          
+            return View(article);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            
+            Article article = GetArticle(id);
+            //Conction();
+            response = client.GetAsync("api/Categorie").Result;
+            listcategorie = response.Content.ReadAsAsync<IEnumerable<Categorie>>().Result;
+            ViewBag.RefCat = new SelectList(listcategorie, "RefCat", "NomCat", article.RefCat);
+            return View(article);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(Article article)
+        {
+            Conction();
+            var message = client.DeleteAsync("api/DeleteArticle/" + article.NumArticle).Result;
+            if (message.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else { return View(); }
+ 
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+        {
+
+            Conction();
+            var message = client.PutAsJsonAsync("api/Article", article).Result;
+          
+                return RedirectToAction("Index");
+        
+            
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+        {
+
+
+            Conction();
+            var message = client.PostAsJsonAsync("api/Article", article).Result;
+            if (message.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View("Create");
+
+            }
+
+
+
+        }
+
 
         /* [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
         {
-          
+
                 db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -93,7 +170,7 @@ namespace E_Commerce.Controllers
         /*private E_CommerceContext db = new E_CommerceContext();
 
         // GET: Articles
-      
+
 
         // GET: Articles/Details/5
         public ActionResult Details(int? id)
@@ -110,12 +187,12 @@ namespace E_Commerce.Controllers
             return View(article);
         }
 
-     
+
 
         // POST: Articles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-       
+
 
         // GET: Articles/Edit/5
         public ActionResult Edit(int? id)

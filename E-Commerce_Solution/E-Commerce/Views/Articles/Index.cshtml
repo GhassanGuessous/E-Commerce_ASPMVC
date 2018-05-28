@@ -32,7 +32,7 @@
 
 <h2>Index</h2>
 <div>
-    <div> choisir une catégorie: @Html.DropDownList("x", ViewBag.e as SelectList, "Selectionner categorie") </div>
+    @Html.ActionLink("Créer", "Create") |<span> choisir une catégorie: @Html.DropDownList("x", ViewBag.e as SelectList, "Selectionner categorie") </span>
 
     <span id="ici">
 
