@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 using E_Commerce.Models;
@@ -12,14 +13,87 @@ namespace E_Commerce.Controllers
 {
     public class ArticlesController : Controller
     {
-        private E_CommerceContext db = new E_CommerceContext();
+        HttpClient client = new HttpClient();
+        HttpResponseMessage response;
+        IEnumerable<Categorie> listcategorie;
+        IEnumerable<Article> listarticles;
 
-        // GET: Articles
+
+        public void Conction()
+        {
+            client.BaseAddress = new Uri("http://localhost:59467");
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+
+        }
+
+
+        public PartialViewResult  AffichesCategrie(int value)
+        {
+
+          //  ViewBag.e = value;
+
+
+            Conction();
+            HttpResponseMessage response = client.GetAsync("api/Categorie?id=" + value).Result;
+            listarticles = response.Content.ReadAsAsync<IEnumerable<Article>>().Result;
+            ViewBag.etudiant = new SelectList(listarticles, "NumArticle", "Designation");
+            return PartialView("_AffichesCategrie", listarticles);
+        }
+        public PartialViewResult AffichesArticles(int value)
+        {
+          
+            Conction();
+            Article article = new Article();
+
+            HttpResponseMessage response = client.GetAsync("api/Article?id=" +value).Result;
+            article = response.Content.ReadAsAsync<Article>().Result;
+            ViewBag.designation = article.Designation;
+            ViewBag.prix= article.PrixU;
+            ViewBag.stock = article.Stock;
+            ViewBag.photo = article.Photo;
+            return PartialView("_AffichesArticles", article);
+
+        }
         public ActionResult Index()
         {
-            var articles = db.Articles.Include(a => a.Categorie);
-            return View(articles.ToList());
+            Conction();
+            response = client.GetAsync("api/Categorie").Result;
+            listcategorie = response.Content.ReadAsAsync<IEnumerable<Categorie>>().Result;
+
+            ViewBag.e = new SelectList(listcategorie, "RefCat", "NomCat");
+            return View();
         }
+        // GET: Articles/Create
+        public ActionResult Create()
+        {
+            Conction();
+            response = client.GetAsync("api/Categorie").Result;
+            listcategorie = response.Content.ReadAsAsync<IEnumerable<Categorie>>().Result;
+            ViewBag.RefCat = new SelectList(listcategorie, "RefCat", "NomCat");
+            return View();
+        }
+
+        /* [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+        {
+          
+                db.Articles.Add(article);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+ }*/
+
+
+
+
+
+
+
+        /*private E_CommerceContext db = new E_CommerceContext();
+
+        // GET: Articles
+      
 
         // GET: Articles/Details/5
         public ActionResult Details(int? id)
@@ -36,30 +110,12 @@ namespace E_Commerce.Controllers
             return View(article);
         }
 
-        // GET: Articles/Create
-        public ActionResult Create()
-        {
-            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat");
-            return View();
-        }
+     
 
         // POST: Articles/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Articles.Add(article);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-
-            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
-            return View(article);
-        }
+       
 
         // GET: Articles/Edit/5
         public ActionResult Edit(int? id)
@@ -127,6 +183,7 @@ namespace E_Commerce.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
-        }
+        }*/
+
     }
 }

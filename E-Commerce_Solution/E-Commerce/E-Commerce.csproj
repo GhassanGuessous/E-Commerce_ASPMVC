@@ -345,6 +345,8 @@
     <Content Include="Views\Statistiques\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Accueil.cshtml" />
+    <Content Include="Views\Shared\_AffichesCategrie.cshtml" />
+    <Content Include="Views\Shared\_AffichesArticles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
