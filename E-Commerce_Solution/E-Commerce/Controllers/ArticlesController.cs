@@ -128,139 +128,174 @@ public ActionResult Delete(int id)
         
             
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+        public ActionResult FileUpload(HttpPostedFileBase file)
         {
+            string physicalPath = "";
+            if (file != null) {
+                string ImageName = System.IO.Path.GetFileName(file.FileName);
+                string ext = System.IO.Path.GetExtension(file.FileName);
+                if (ext == ".jpg" || ext == ".png")
+                {
+                   physicalPath = Server.MapPath("~/Image/" + ImageName);
+                  file.SaveAs(physicalPath);
+                    Article article = new Article();
+                   article.Designation= Request.Form["Designation"];
+                    article.PrixU = Convert.ToDouble(Request.Form["PrixU"]);
+                    
+                   article.Stock =Convert.ToInt32(Request.Form["Stock"]);
+                    article.RefCat= Convert.ToInt32(Request.Form["RefCat"]);
+                    article.Photo = ImageName;
 
+                    Conction();
+                    var message = client.PostAsJsonAsync("api/Article", article).Result;
+                    if (message.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return View("Create");
 
-            Conction();
-            var message = client.PostAsJsonAsync("api/Article", article).Result;
-            if (message.IsSuccessStatusCode)
-            {
-                return RedirectToAction("Index");
-            }
-            else
-            {
-                return View("Create");
-
-            }
-
-
+                    }
+                }
+                }
+            return View("Create");
 
         }
 
+            /* [HttpPost]
+             [ValidateAntiForgeryToken]
+             public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+             {
 
-        /* [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
-        {
 
-                db.Articles.Add(article);
+                 Conction();
+                 var message = client.PostAsJsonAsync("api/Article", article).Result;
+                 if (message.IsSuccessStatusCode)
+                 {
+                     return RedirectToAction("Index");
+                 }
+                 else
+                 {
+                     return View("Create");
+
+                 }
+
+
+
+             }
+             */
+
+            /* [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+            {
+
+                    db.Articles.Add(article);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+     }*/
+
+
+
+
+
+
+
+            /*private E_CommerceContext db = new E_CommerceContext();
+
+            // GET: Articles
+
+
+            // GET: Articles/Details/5
+            public ActionResult Details(int? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Article article = db.Articles.Find(id);
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(article);
+            }
+
+
+
+            // POST: Articles/Create
+            // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+            // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+            // GET: Articles/Edit/5
+            public ActionResult Edit(int? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Article article = db.Articles.Find(id);
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
+                return View(article);
+            }
+
+            // POST: Articles/Edit/5
+            // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+            // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+            [HttpPost]
+            [ValidateAntiForgeryToken]
+            public ActionResult Edit([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
+            {
+                if (ModelState.IsValid)
+                {
+                    db.Entry(article).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
+                return View(article);
+            }
+
+            // GET: Articles/Delete/5
+            public ActionResult Delete(int? id)
+            {
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Article article = db.Articles.Find(id);
+                if (article == null)
+                {
+                    return HttpNotFound();
+                }
+                return View(article);
+            }
+
+            // POST: Articles/Delete/5
+            [HttpPost, ActionName("Delete")]
+            [ValidateAntiForgeryToken]
+            public ActionResult DeleteConfirmed(int id)
+            {
+                Article article = db.Articles.Find(id);
+                db.Articles.Remove(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
- }*/
-
-
-
-
-
-
-
-        /*private E_CommerceContext db = new E_CommerceContext();
-
-        // GET: Articles
-
-
-        // GET: Articles/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Article article = db.Articles.Find(id);
-            if (article == null)
+
+            protected override void Dispose(bool disposing)
             {
-                return HttpNotFound();
-            }
-            return View(article);
+                if (disposing)
+                {
+                    db.Dispose();
+                }
+                base.Dispose(disposing);
+            }*/
+
         }
-
-
-
-        // POST: Articles/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-
-
-        // GET: Articles/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Article article = db.Articles.Find(id);
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
-            return View(article);
-        }
-
-        // POST: Articles/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(article).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
-            return View(article);
-        }
-
-        // GET: Articles/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Article article = db.Articles.Find(id);
-            if (article == null)
-            {
-                return HttpNotFound();
-            }
-            return View(article);
-        }
-
-        // POST: Articles/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Article article = db.Articles.Find(id);
-            db.Articles.Remove(article);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }*/
-
-    }
 }
