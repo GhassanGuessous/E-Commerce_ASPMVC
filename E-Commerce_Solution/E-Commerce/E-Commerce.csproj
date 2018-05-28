@@ -246,6 +246,7 @@
     <Content Include="images\templateOne\logo.png" />
     <Content Include="images\templateOne\logo1.png" />
     <Content Include="Image\1435181529224.jpg" />
+    <Content Include="Image\images.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">

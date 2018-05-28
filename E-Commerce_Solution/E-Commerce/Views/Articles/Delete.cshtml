@@ -4,7 +4,12 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Delete";
 }
+<div class="pull-left">
+    <br />
+    <img src="~/Image/@Url.Content(Model.Photo)" height="350" width="350" />
 
+</div>
+<div class="pull-right">
     <h3>Are you sure you want to delete this?</h3>
     <div>
         <h4>Article</h4>
@@ -16,14 +21,6 @@
 
 
             <dl class="dl-horizontal">
-
-                <dt>
-                    @Html.DisplayNameFor(model => model.Categorie.NomCat)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Categorie.NomCat)
-                </dd>
 
                 <dt>
                     @Html.DisplayNameFor(model => model.Designation)
@@ -49,13 +46,6 @@
                     @Html.DisplayFor(model => model.Stock)
                 </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.Photo)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.Photo)
-                </dd>
                 <dd>
                     @Html.HiddenFor(model => model.NumArticle)
                 </dd>
@@ -67,4 +57,5 @@
                 @Html.ActionLink("Back to List", "Index")
             </div>
         }
+    </div>
     </div>
