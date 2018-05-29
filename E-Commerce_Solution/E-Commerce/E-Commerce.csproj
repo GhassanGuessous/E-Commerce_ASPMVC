@@ -62,6 +62,10 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.6\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -161,6 +165,8 @@
     </Compile>
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\ClientLogin.cs" />
+    <Compile Include="Models\ClientUpdate.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Commande.cs" />
     <Compile Include="Models\E_CommerceContext.cs" />
@@ -172,6 +178,9 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\popup\mesStyles.css" />
+    <Content Include="Content\sweetalert\sweetalert-dev.min.js" />
+    <Content Include="Content\sweetalert\sweetalert.min.css" />
+    <Content Include="Content\sweetalert\sweetalert.min.js" />
     <Content Include="Content\templateOne\animate.min.css" />
     <Content Include="Content\templateOne\bootstrap.min.css" />
     <Content Include="Content\templateOne\custom.css" />
@@ -267,8 +276,11 @@
     <Content Include="Views\Commandes\Details.cshtml" />
     <Content Include="Views\Commandes\Edit.cshtml" />
     <Content Include="Views\Commandes\Index.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Inscription.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
+    <Content Include="Views\Home\Erreur.cshtml" />
+    <Content Include="Views\Shared\_LayoutInscription.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

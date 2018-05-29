@@ -1,6 +1,9 @@
-﻿using System;
+﻿using E_Commerce.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -8,6 +11,7 @@ namespace E_Commerce.Controllers
 {
     public class HomeController : Controller
     {
+
         public ActionResult Index()
         {
             return View();
@@ -38,19 +42,74 @@ namespace E_Commerce.Controllers
             return "Lancer des Commandes";
         }
 
-        public ActionResult Login()
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login([Bind(Include = "Login,MotDePasse")]ClientLogin c)
         {
-            return RedirectToAction("Accueil");
+           if (ModelState.IsValid)
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:60076");
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var message = client.GetAsync("api/Auth/Login?l="+c.Login+"&m="+c.MotDePasse).Result;
+
+                if (message.StatusCode == HttpStatusCode.OK)
+                    return View("Accueil");
+                else
+                {
+                    ViewData["erreurAuth"] = "erreurAuth";
+                    return View("Index", c);
+                }             
+            }
+           
+            return View("Index", c); 
         }
 
-        public String Inscription()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Inscription([Bind(Include = "Nom,Prenom,Login,MotDePasse,RetapezMotDePasse,Email,Ville,Tel")]ClientUpdate c)
         {
-            return "Nouvelle Inscription !";
+            if (ModelState.IsValid)
+            {
+                Client newClient = new Client(c.Login, c.MotDePasse, c.Nom, c.Prenom, c.Email, c.Ville, c.Tel);
+
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:60076");
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var message = client.GetAsync("api/Auth/Inscription?Login="+newClient.Login+"&MotDePasse="+newClient.MotDePasse+"&Nom="+newClient.Nom+"&Prenom="+newClient.Prenom+"&Email="+newClient.Email+"&Ville="+newClient.Ville+"&Tel="+newClient.Tel).Result;
+
+                if (message.StatusCode == HttpStatusCode.Created)
+                {
+                    ViewData["bienAjouter"] = "success";
+                    return View("Inscription");
+                }
+                else
+                {
+                    ViewData["erreurAuth"] = "erreurInscription";
+                    return View("Inscription", c);
+                }                
+            }
+            return View("Inscription", c);
         }
+
+
+        public ActionResult Inscription()
+        {
+            return View();
+        }
+
 
         public ActionResult Logout()
         {
             return RedirectToAction("Index");
         }
+
+
+        public JsonResult isLoginExists(string Login)
+        {
+            return Json(!(new E_CommerceContext()).Clients.Any(x => x.Login == Login), JsonRequestBehavior.AllowGet);
+        }
+
     }
 }
