@@ -1,0 +1,128 @@
+﻿
+<script src="~/Scripts/chart/highcharts.js"></script>
+<script src="~/Scripts/chart/exporting.js"></script>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<table>
+
+    <tr>
+        <td>
+            <div id=”containerPieChart” style=”min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto; border:1px solid black;“></div>
+        </td>
+    </tr>
+
+</table>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<script>
+    $(document).ready(function () {
+        $.getJSON("/Statistiques/GetData", function (result) {
+   var name = Array();
+var data =Array();
+var dataArrayFinal =Array();
+        for (i = 0; i < result.length;i++) { 
+            name[i] = result[i].ArticleName;
+            data[i] = result[i].NumberCommande;  
+
+               
+}
+
+for(j=0;j<name.length;j++) { 
+   var temp = new Array(name[j],data[j]); 
+   dataArrayFinal[j] = temp;     
+}
+
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Les nombres de commande par article'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        } 
+                        
+                    }
+                },
+                series: [{
+                    name: 'Brands',
+                    colorByPoint: true,
+                    data: dataArrayFinal
+                   
+                }]
+            });
+
+
+
+        })
+
+    });
+</script>
+
+@*
+        $(document).ready(function () {
+            drawPieChartAjax();
+        });
+               function drawPieChartAjax() {
+            $.ajax({
+                type: “POST”,
+                contentType: “application/json; charset=utf-8”,
+                url: “Chart/PieChart”,
+                data: “{}”,
+                dataType: “json”,
+                success: function (Result) {
+                    drawPieChart(Result);
+                },
+                error: function(Result) {
+                    alert(“Error”);
+                }
+            });
+        }
+        function drawPieChart(data) {
+            $(‘#containerPieChart’).highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: ‘pie’
+                },
+                title: {
+                    text: data.Title
+                },
+                tooltip: {
+                    pointFormat: data.Tooltip
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: ‘pointer’,
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: data.SeriesName,
+                    colorByPoint: true,
+                    data: data.Series
+                }]
+            });
+        }
+    </script>*@

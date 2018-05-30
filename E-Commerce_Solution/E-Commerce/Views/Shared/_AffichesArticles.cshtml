@@ -1,0 +1,92 @@
+﻿@model E_Commerce.Models.Article
+
+
+<div class="pull-left">
+    <br />
+    <img src="~/Image/@Url.Content(ViewBag.photo)" height="350" width="350" />
+   
+</div>
+<div class="snip1265 pull-right">
+    <br /><br />
+    <div class="plan">
+        <header>
+            <i class="ion-ios-navigate-outline"></i>
+            <h1 class="plan-title">
+                @ViewBag.designation
+
+
+            </h1>
+            <h3><div class="plan-cost"><span class="plan-price">@ViewBag.prix Dh</span><span class="plan-type"></span></div></h3>
+        </header>
+        <ul class="plan-features">
+            <li>
+                il reste seulement dans Votre dépot @ViewBag.stock 
+            </li>
+
+        </ul>
+        <div>
+            @Html.ActionLink("modifier", "Edit", new { id = Model.NumArticle }) |
+            @Html.ActionLink("Supprimer", "Delete", new { id = Model.NumArticle }) |
+            
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+@*<div>
+        <h4>@ViewBag.e</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Categorie.NomCat)
+            </dt>
+
+            <dd>
+
+                @Html.DisplayFor(model => model.Categorie.NomCat)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Designation)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Designation)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PrixU)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PrixU)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Stock)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Stock)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Photo)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Photo)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.NumArticle }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+*@

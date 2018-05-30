@@ -1,0 +1,39 @@
+﻿@model IEnumerable<E_Commerce.Models.Article>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@using GridMvc.Html
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="@Url.Content("~/Content/Gridmvc.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <script src="~/scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/scripts/gridmvc.min.js"></script>
+
+    <title>Index</title>
+</head>
+<body>
+
+    <div style="width:1000px;background-color:blue;font-size:large;font-family:Arial;color:black">
+        @Html.Grid(Model).Columns(columns =>
+   {
+   columns.Add(c => c.Designation).Titled("designation").Filterable(true);
+
+   columns.Add(c => c.PrixU).Titled("PrixU").Filterable(true); ;
+   columns.Add(c => c.NumArticle).Titled("NumArticle").Filterable(true);
+   columns.Add().Encoded(false).Sanitized(false).Titled("Image").Filterable(true).RenderValueAs(c => @<div style="width:40px;"><img alt="Image" src="~/Image/@Url.Content(c.Photo)" )" height="120" width="100" /></div>);
+
+       columns.Add().Encoded(false).Sanitized(false).Titled("Detail").SetWidth(30).RenderValueAs(c => Html.ActionLink("Show Detail", "Detail", new { id1 = c.NumArticle }));
+
+
+   }).WithPaging(3).Sortable(true);
+
+
+    </div>
+
+</body>
+</html>

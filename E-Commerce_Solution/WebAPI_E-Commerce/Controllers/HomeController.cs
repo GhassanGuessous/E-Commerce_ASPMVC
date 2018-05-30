@@ -1,8 +1,10 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebAPI_E_Commerce.Models;
 
 namespace WebAPI_E_Commerce.Controllers
 {
@@ -10,6 +12,9 @@ namespace WebAPI_E_Commerce.Controllers
     {
         public ActionResult Index()
         {
+         
+
+
             ViewBag.Title = "Home Page";
 
             return View();

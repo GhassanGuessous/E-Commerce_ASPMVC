@@ -35,16 +35,17 @@
                         @Html.ActionLink("Accueil", "Accueil", "Home", new { @class = "nav-link active" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Consulter les catalogues", "ConsulterCatalogues", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Consulter les catalogues", "Index", "Clients", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Visualiser votre panier", "VisualiserPanier", "Home", new { @class = "nav-link" })
+
+                        @Html.ActionLink("Visualiser votre panier", "Index_Panier", "Clients", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                       @Html.ActionLink("Convertisseur", "Convertisseur", "Home", new { @class = "nav-link" })
+                       @Html.ActionLink("Convertisseur", "Index", "CurrencyConverter", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Lancer des commandes", "LancerCommandes", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Lancer des commandes", "Create", "Commandes", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                         @Html.ActionLink("Déconnecter", "Logout", "Home", new { @class = "nav-link" })
