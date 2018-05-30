@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace E_Commerce.Controllers
 {
@@ -37,9 +38,9 @@ namespace E_Commerce.Controllers
             return "Convertisseur !";
         }
 
-        public String LancerCommandes()
+        public ActionResult LancerCommandes()
         {
-            return "Lancer des Commandes";
+            return new RedirectToRouteResult(new RouteValueDictionary(new { Controller = "Commandes", Action = "Index"}));
         }
 
         [HttpPost]
