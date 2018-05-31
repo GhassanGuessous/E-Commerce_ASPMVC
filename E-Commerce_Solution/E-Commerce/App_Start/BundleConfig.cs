@@ -14,7 +14,10 @@ namespace E_Commerce
 
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at https://modernizr.com to pick only the tests you need.
-            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                "~/Scripts/modernizr-*",
+                "~/Content/sweetalert/sweetalert.min.js"
+                ));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -41,7 +44,8 @@ namespace E_Commerce
                      "~/Content/templateOne/style.css",
                      "~/Content/templateOne/custom.css",
                      "~/Content/popup/mesStyles.css",
-                     "~/Content/templateOne/fontGoogleApi.css"
+                     "~/Content/templateOne/fontGoogleApi.css",
+                     "~/Content/sweetalert/sweetalert.min.css"
                      ));
 
             //scripts ::
@@ -60,7 +64,6 @@ namespace E_Commerce
                      "~/Scripts/TemplateOne/isotope.pkgd.min.js",
                      "~/Scripts/TemplateOne/YouTubePopUp.jquery.js",
                      "~/Scripts/TemplateOne/map.js",
-                     "~/Scripts/TemplateOne/validator.js",
                      "~/Scripts/TemplateOne/scripts.js"
                      ));
 

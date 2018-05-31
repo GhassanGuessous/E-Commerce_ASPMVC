@@ -10,6 +10,13 @@ namespace WebAPI_E_Commerce.Service
     {
         EcommerceEntities1 db = new EcommerceEntities1();
         List<MonPanier> prod = new List<MonPanier>();
+
+        public void AjouterArticle(Article article)
+        {
+            db.Articles.Add(article);
+            db.SaveChanges();
+        }
+
         public Article GetArticle(int id)
         {
             return db.Articles.Find(id);
@@ -40,5 +47,17 @@ namespace WebAPI_E_Commerce.Service
             return prod;
         }
 
+        public void ModifierArticle(Article article)
+        {
+            db.Entry(article).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public void SupprimerArticlee(int id)
+        {
+            Article article = GetArticle(id);
+            db.Articles.Remove(article);
+            db.SaveChanges();
+        }
     }
     }

@@ -19,14 +19,14 @@
 </head>
 <body>
 
-    <div style="width:900px;background-color:lightpink">
+    <div style="width:1000px;background-color:blue;font-size:large;font-family:Arial;color:black">
         @Html.Grid(Model).Columns(columns =>
    {
    columns.Add(c => c.Designation).Titled("designation").Filterable(true);
    columns.Add(c => c.PrixU).Titled("Prix unitaire").Filterable(true);
    columns.Add(c => c.DateCmd).Titled("Date Commande").Filterable(true);
    columns.Add(c => c.QteArticle).Titled("Qantité d'article").Filterable(true);
-   columns.Add().Encoded(false).Sanitized(false).Titled("Image").Filterable(true).RenderValueAs(c => @<div style="width:40px;"><img alt="Image" src="~/Image/@Url.Content(c.photo)" )" height="80" width="80" /></div>);
+   columns.Add().Encoded(false).Sanitized(false).Titled("Image").Filterable(true).RenderValueAs(c => @<div style="width:40px;"><img alt="Image" src="~/Image/@Url.Content(c.photo)" )" height="120" width="100" /></div>);
 
 
    }).WithPaging(3).Sortable(true);

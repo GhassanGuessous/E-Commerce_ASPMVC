@@ -12,6 +12,8 @@ namespace WebAPI_E_Commerce.Service
       
             Article GetArticle(int id);
             IEnumerable<MonPanier> Get_Panier(int id);
-      
+           void AjouterArticle(Article article);
+           void ModifierArticle(Article article);
+           void SupprimerArticlee(int id);
     }
 }

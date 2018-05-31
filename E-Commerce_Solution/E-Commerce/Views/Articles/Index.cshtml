@@ -3,55 +3,47 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Categorie.NomCat)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Designation)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PrixU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Stock)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Photo)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Categorie.NomCat)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Designation)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PrixU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Stock)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Photo)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.NumArticle }) |
-            @Html.ActionLink("Details", "Details", new { id=item.NumArticle }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.NumArticle })
-        </td>
-    </tr>
+@{
+      Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; ;
+    ViewBag.Title = "Index";
 }
 
-</table>
+
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+
+<script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+
+<script>
+    $(function () {
+        $('#x').change(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Articles/AffichesCategrie",
+                datatype: "Json",
+                data: { value: $('#x').val() }
+            }).done(function (data) {
+                $("#ici").html(data);
+            });
+
+        });
+
+    });
+</script>
+
+<h2>Index</h2>
+<div>
+    @Html.ActionLink("Créer", "Create") |<span> choisir une catégorie: @Html.DropDownList("x", ViewBag.e as SelectList, "Selectionner categorie") </span>
+
+    <span id="ici">
+
+    </span>
+</div>
+    <div id="Here">
+
+    </div>
+
+
+
+
+
+

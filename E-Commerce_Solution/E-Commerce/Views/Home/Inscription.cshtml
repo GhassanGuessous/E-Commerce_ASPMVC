@@ -1,0 +1,80 @@
+﻿@model E_Commerce.Models.ClientUpdate
+
+@{
+    Layout = "~/Views/Shared/_LayoutInscription.cshtml";
+    ViewBag.Title = "Index";
+}
+
+@if ((String)ViewData["erreurAuth"] == "erreurInscription")
+{
+    <script>swal('la base de données n\'est pas disponible.. réessayer !', '', 'error')</script>
+}
+
+@if ((String)ViewData["bienAjouter"] == "success")
+{
+    <script>swal('done !', '', 'success')</script>
+}
+
+<!--inscription-->
+<div class="inscriptionModal">
+
+    @using (Html.BeginForm("Inscription", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <img src="~/images/templateOne/logo.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerPopup">
+
+                @Html.LabelFor(model => model.Nom)
+                @Html.EditorFor(model => model.Nom, new { htmlAttributes = new { @class = "form-control", placeholder = "votre nom" } })
+                @Html.ValidationMessageFor(model => model.Nom, "", new { @class = "text-danger-two" })
+                <br />
+                @Html.LabelFor(model => model.Prenom)
+                @Html.EditorFor(model => model.Prenom, new { htmlAttributes = new { @class = "form-control", placeholder = "votre prénom" } })
+                @Html.ValidationMessageFor(model => model.Prenom, "", new { @class = "text-danger-two" })
+                <br />
+                @Html.LabelFor(model => model.Login)
+                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Login" } })
+                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger-two" })
+                <br />
+                @Html.LabelFor(model => model.MotDePasse)
+                @Html.PasswordFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control", placeholder = "mot de passe" } })
+                @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger-two" })
+                <br />
+                @Html.LabelFor(model => model.RetapezMotDePasse)
+                @Html.PasswordFor(model => model.RetapezMotDePasse, new { htmlAttributes = new { @class = "form-control", placeholder = "mot de passe" } })
+                @Html.ValidationMessageFor(model => model.RetapezMotDePasse, "", new { @class = "text-danger-two" })
+                <br />
+                @Html.LabelFor(model => model.Email)
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "adresse mail" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger-two" })
+                <br />
+                @Html.LabelFor(model => model.Ville)
+                <select name="ville" required class="form-control">
+                    <option>Safi</option>
+                    <option>Casa</option>
+                </select>
+                @Html.ValidationMessageFor(model => model.Ville, "", new { @class = "text-danger-two" })
+                <br/>
+                @Html.LabelFor(model => model.Tel)
+                @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control", placeholder = "numéro de téléphone" } })
+                @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger-two" })
+            </div>
+
+            <div class="containerFooter" style="background-color:#f1f1f1">
+                <button type="submit" name="submit" class="btn btn-warning">Send</button>
+                <button type="reset" name="reset" class="btn btn-primary">Reset</button>
+            </div>
+        </div>
+    }
+</div>
+<!--end inscription-->
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

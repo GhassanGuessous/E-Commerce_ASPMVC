@@ -188,6 +188,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Article.cs" />
     <Compile Include="Models\Categorie.cs" />
+    <Compile Include="Models\ClientLogin.cs" />
+    <Compile Include="Models\ClientUpdate.cs" />
     <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Commande.cs" />
     <Compile Include="Models\Converter.cs" />
@@ -221,6 +223,9 @@
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\Gridmvc.css" />
     <Content Include="Content\popup\mesStyles.css" />
+    <Content Include="Content\sweetalert\sweetalert-dev.min.js" />
+    <Content Include="Content\sweetalert\sweetalert.min.css" />
+    <Content Include="Content\sweetalert\sweetalert.min.js" />
     <Content Include="Content\templateOne\animate.min.css" />
     <Content Include="Content\templateOne\bootstrap.min.css" />
     <Content Include="Content\templateOne\custom.css" />
@@ -246,6 +251,7 @@
     <Content Include="images\templateOne\logo.png" />
     <Content Include="images\templateOne\logo1.png" />
     <Content Include="Image\1435181529224.jpg" />
+    <Content Include="Image\images.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -345,6 +351,8 @@
     <Content Include="Views\Statistiques\Index.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Accueil.cshtml" />
+    <Content Include="Views\Shared\_AffichesCategrie.cshtml" />
+    <Content Include="Views\Shared\_AffichesArticles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
