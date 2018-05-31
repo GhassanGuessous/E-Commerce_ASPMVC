@@ -69,11 +69,11 @@ namespace E_Commerce.Controllers
             return Json(db.Articles.Where(a => a.NumArticle == ID), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult UpdateList()
-        {
-            db.Configuration.ProxyCreationEnabled = false;
-            return Json(db.Commandes.ToList(), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult UpdateList()
+        //{
+        //    db.Configuration.ProxyCreationEnabled = false;
+        //    return Json(db.Commandes.ToList(), JsonRequestBehavior.AllowGet);
+        //}
 
         // POST: Commandes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 

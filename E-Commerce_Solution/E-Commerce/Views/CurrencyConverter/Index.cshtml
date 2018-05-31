@@ -7,49 +7,35 @@
     <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-6">
-            @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
             <h4>Convertisseur en temps réel</h4>
             <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <form class="form-inline">
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Currency1, "Première devise", htmlAttributes: new { @class = "control-label col-md-6" })
-                    <div class="col-md-10">
+            <form>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.Currency1, "Première devise", htmlAttributes: new {})
                         @Html.DropDownList("c2", ViewBag.c1 as SelectList, htmlAttributes: new { @class = "form-control", id = "cur1" })
-                        @Html.ValidationMessage("c2", "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-6">
+                        @Html.LabelFor(model => model.Currency2, "Deuxième devise", htmlAttributes: new {})
+                        @Html.DropDownList("c2", ViewBag.c2 as SelectList, htmlAttributes: new { @class = "form-control", id = "cur2" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Montant, "Montant à convertir", htmlAttributes: new {})
+                    <div>
+                        @Html.Editor("m", new { htmlAttributes = new { @class = "form-control", type = "number", id = "montant", min = "1", step = "1" } })
+                        @Html.ValidationMessage("m", "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Currency2, "Deuxième devise", htmlAttributes: new { @class = "control-label col-md-6" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("c2", ViewBag.c2 as SelectList, htmlAttributes: new { @class = "form-control", id = "cur2" })
-                        @Html.ValidationMessage("c2", "", new { @class = "text-danger" })
+                    @Html.Label("mc", "Montant converti", htmlAttributes: new {})
+                    <div>
+                        @Html.Editor("mc", new { htmlAttributes = new { @class = "form-control", type = "number", id = "mc", min = "1", step = "1", disabled = "disabled" } })
+                        @Html.ValidationMessage("m", "", new { @class = "text-danger" })
                     </div>
                 </div>
             </form>
-
-            <div class="form-group">
-                @Html.LabelFor(model => model.Montant, "Montant à convertir", htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-10">
-                    @Html.Editor("m", new { htmlAttributes = new { @class = "form-control", type = "number", id = "montant", min = "1", step = "1" } })
-                    @Html.ValidationMessage("m", "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                @Html.Label("mc", "Montant convertit", htmlAttributes: new { @class = "control-label col-md-6" })
-                <div class="col-md-10">
-                    @Html.Editor("mc", new { htmlAttributes = new { @class = "form-control", type = "number", id = "mc", min = "1", step = "1", disabled = "disabled" } })
-                    @Html.ValidationMessage("m", "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-}
         </div>
         <div class="col-md-3"></div>
     </div>
