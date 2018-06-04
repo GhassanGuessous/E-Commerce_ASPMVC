@@ -40,7 +40,7 @@ namespace E_Commerce.Controllers
         // GET: Commandes/Create
         public ActionResult Create()
         {
-            List<Commande> cmds = db.Commandes.Where(c => c.NumClient == 1).ToList();
+            List<Commande> cmds = db.Commandes.Where(c => c.NumClient == 2).ToList();
             ViewBag.ArticlesPanier = GetArticlesByCmds(cmds);
             ViewBag.c = new SelectList(db.Categories, "RefCat", "NomCat");
             return View();
@@ -85,7 +85,7 @@ namespace E_Commerce.Controllers
             if (ModelState.IsValid)
             {
                 // Numero du client est recuperré a partir de la session 
-                commande.NumClient = 1;
+                commande.NumClient = 2;
                 commande.DateCmd = DateTime.Now.ToString();
                 db.Commandes.Add(commande);
 
