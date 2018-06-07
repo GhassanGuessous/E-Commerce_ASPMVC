@@ -42,13 +42,13 @@
                         @Html.ActionLink("Visualiser votre panier", "Index_Panier", "Clients", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                       @Html.ActionLink("Convertisseur", "Index", "CurrencyConverter", new { @class = "nav-link" })
+                       @Html.ActionLink("Convertisseur", "Index", "CurrencyConverter",  "", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item"><!--what do u do here !-->
                         @Html.ActionLink("Lancer des commandes", "Create", "Commandes", "", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Déconnecter", "Logout", "Home", new { @class = "nav-link" })
+                        @Html.ActionLink("Déconnecter", "Logout", "Home", "", new { @class = "nav-link" })
                     </li>
                 </ul>
             </div>
