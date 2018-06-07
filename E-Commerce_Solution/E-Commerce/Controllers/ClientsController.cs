@@ -135,10 +135,10 @@ namespace E_Commerce.Controllers
         IEnumerable<Article> listarticles;
         E_CommerceContext db = new E_CommerceContext();
         IEnumerable<MonPanier> article_panier;
-        
-        
-        
-         public ActionResult ViewAll()
+
+
+
+        public ActionResult ViewAll()
         {
             return View(GetAllClients());
         }
@@ -168,36 +168,36 @@ namespace E_Commerce.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Client cl)
         {
-           
-                using (E_CommerceContext db = new E_CommerceContext())
-                {
-                    if (cl.NumClient == 0)
-                    {
-                        db.Clients.Add(cl);
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        db.Entry(cl).State = EntityState.Modified;
-                        db.SaveChanges();
 
-                    }
+            using (E_CommerceContext db = new E_CommerceContext())
+            {
+                if (cl.NumClient == 0)
+                {
+                    db.Clients.Add(cl);
+                    db.SaveChanges();
                 }
-                return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllClients()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
-           
+                else
+                {
+                    db.Entry(cl).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+            }
+            return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllClients()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
+
         }
 
         public ActionResult Delete(int id)
         {
-            
-                using (E_CommerceContext db = new E_CommerceContext())
-                {
-                    Client cl = db.Clients.Where(x => x.NumClient == id).FirstOrDefault<Client>();
-                    db.Clients.Remove(cl);
-                    db.SaveChanges();
-                }
-                return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllClients()), message = "Bien supprimé" }, JsonRequestBehavior.AllowGet);
-            
+
+            using (E_CommerceContext db = new E_CommerceContext())
+            {
+                Client cl = db.Clients.Where(x => x.NumClient == id).FirstOrDefault<Client>();
+                db.Clients.Remove(cl);
+                db.SaveChanges();
+            }
+            return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllClients()), message = "Bien supprimé" }, JsonRequestBehavior.AllowGet);
+
         }
 
         public void Conction()
