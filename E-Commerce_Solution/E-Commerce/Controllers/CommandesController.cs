@@ -40,7 +40,7 @@ namespace E_Commerce.Controllers
         // GET: Commandes/Create
         public ActionResult Create()
         {
-            List<Commande> cmds = db.Commandes.Where(c => c.NumClient == 1).ToList();
+            List<Commande> cmds = db.Commandes.Where(c => c.NumClient == 2).ToList();
             ViewBag.ArticlesPanier = GetArticlesByCmds(cmds);
             ViewBag.c = new SelectList(db.Categories, "RefCat", "NomCat");
             return View();
@@ -69,11 +69,11 @@ namespace E_Commerce.Controllers
             return Json(db.Articles.Where(a => a.NumArticle == ID), JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult UpdateList()
-        {
-            db.Configuration.ProxyCreationEnabled = false;
-            return Json(db.Commandes.ToList(), JsonRequestBehavior.AllowGet);
-        }
+        //public JsonResult UpdateList()
+        //{
+        //    db.Configuration.ProxyCreationEnabled = false;
+        //    return Json(db.Commandes.ToList(), JsonRequestBehavior.AllowGet);
+        //}
 
         // POST: Commandes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -85,7 +85,7 @@ namespace E_Commerce.Controllers
             if (ModelState.IsValid)
             {
                 // Numero du client est recuperré a partir de la session 
-                commande.NumClient = 1;
+                commande.NumClient = 2;
                 commande.DateCmd = DateTime.Now.ToString();
                 db.Commandes.Add(commande);
 

@@ -136,6 +136,70 @@ namespace E_Commerce.Controllers
         E_CommerceContext db = new E_CommerceContext();
         IEnumerable<MonPanier> article_panier;
 
+
+
+        public ActionResult ViewAll()
+        {
+            return View(GetAllClients());
+        }
+
+        IEnumerable<Clients> GetAllClients()
+        {
+            using (E_CommerceContext db = new E_CommerceContext())
+            {
+                return db.Clients.ToList<Client>();
+            }
+
+        }
+
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            Client cl = new Client();
+            if (id != 0)
+            {
+                using (E_CommerceContext db = new E_CommerceContext())
+                {
+                    cl = db.Clients.Where(x => x.NumClient == id).FirstOrDefault<Clients>();
+                }
+            }
+            return View(cl);
+        }
+
+        [HttpPost]
+        public ActionResult AddOrEdit(Client cl)
+        {
+
+            using (E_CommerceContext db = new E_CommerceContext())
+            {
+                if (cl.NumClient == 0)
+                {
+                    db.Clients.Add(cl);
+                    db.SaveChanges();
+                }
+                else
+                {
+                    db.Entry(cl).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+            }
+            return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllClients()), message = "Submitted Successfully" }, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public ActionResult Delete(int id)
+        {
+
+            using (E_CommerceContext db = new E_CommerceContext())
+            {
+                Client cl = db.Clients.Where(x => x.NumClient == id).FirstOrDefault<Client>();
+                db.Clients.Remove(cl);
+                db.SaveChanges();
+            }
+            return Json(new { success = true, html = GlobalClass.RenderRazorViewToString(this, "ViewAll", GetAllClients()), message = "Bien supprimé" }, JsonRequestBehavior.AllowGet);
+
+        }
+
         public void Conction()
         {
             client.BaseAddress = new Uri("http://localhost:59467");

@@ -26,24 +26,35 @@
                 e.preventDefault();
                 swal("desolé", "La quantité que vous demandez dépasse la quantité du stock", "info");
             }
-            else {
-                $.get("/Commandes/UpdateList", function (data) {
-                    $("#listcmd").empty();
-                    $("#listcmd").append("<tr><th>Designation</th><th>QteArticle</th><th>Photo</th></th>");
-                    $.each(data, function (index, ligne) {
-                        $("#listcmd").append("<tr><td>" + ligne.NumArticle + "</td><td>" + ligne.QteArticle + "</td><td></td></tr>");
-                    });
-                });
-            }
+            //else {
+            //    $.get("/Commandes/UpdateList", function (data) {
+            //        $("#listcmd").empty();
+            //        $("#listcmd").append("<tr><th>Designation</th><th>QteArticle</th><th>Photo</th></th>");
+            //        $.each(data, function (index, ligne) {
+            //            $("#listcmd").append("<tr><td>" + ligne.NumArticle + "</td><td>" + ligne.QteArticle + "</td><td></td></tr>");
+            //        });
+            //    });
+            //}
         });
 
         $("#montant").keyup(function () {
+            GetConvertion();
+        });
+
+        $("#cur1").change(function () {
+            GetConvertion();
+        });
+
+        $("#cur2").change(function () {
+            GetConvertion();
+        });
+
+        function GetConvertion() {
             $.get("/CurrencyConverter/Convert", { cur1: $("#cur1").val(), cur2: $("#cur2").val(), montant: $("#montant").val() }, function (data) {
                 $("#mc").empty();
                 $("#mc").prop("disabled", true);
                 $("#mc").val(data);
             });
-        });
-
+        }
     });
 });

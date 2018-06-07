@@ -26,5 +26,11 @@ namespace E_Commerce.Models
         public System.Data.Entity.DbSet<E_Commerce.Models.Categorie> Categories { get; set; }
 
         public System.Data.Entity.DbSet<E_Commerce.Models.Commande> Commandes { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer<E_CommerceContext>(null);
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

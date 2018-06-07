@@ -9,6 +9,7 @@ namespace E_Commerce.Models
 {
     public class Article
     {
+        //hada comment
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int NumArticle { get; set; }
