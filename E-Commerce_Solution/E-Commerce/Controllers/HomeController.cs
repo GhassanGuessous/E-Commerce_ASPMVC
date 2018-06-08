@@ -116,5 +116,18 @@ namespace E_Commerce.Controllers
             return Json(!(new E_CommerceContext()).Clients.Any(x => x.Login == Login), JsonRequestBehavior.AllowGet);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AdminPanel([Bind(Include = "Login,MotDePasse")]ClientLogin c)
+        {
+            if (ModelState.IsValid)
+            {
+                if (c.Login == "admin" && c.MotDePasse == "admin")
+                    return RedirectToAction("Index", "Categories");
+            }
+
+            ViewData["erreurAuth"] = "erreurAuth";
+            return View("Index");
+        }
     }
 }
