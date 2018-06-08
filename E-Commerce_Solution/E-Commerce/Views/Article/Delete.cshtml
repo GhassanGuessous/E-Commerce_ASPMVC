@@ -1,7 +1,6 @@
 ﻿@model E_Commerce.Models.Article
 
-@{ Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-   
+@{
     ViewBag.Title = "Delete";
 }
 
@@ -44,7 +43,13 @@
             @Html.DisplayFor(model => model.Stock)
         </dd>
 
-       
+        <dt>
+            @Html.DisplayNameFor(model => model.Photo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Photo)
+        </dd>
 
     </dl>
 

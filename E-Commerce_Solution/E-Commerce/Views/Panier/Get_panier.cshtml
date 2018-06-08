@@ -1,9 +1,10 @@
-﻿@model IEnumerable<E_Commerce.Models.MonPanier>
-@{Layout = null;
+﻿
+@model IEnumerable<E_Commerce.Models.MonPanier>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Mon panier";
 }
 
-<h2>Index</h2>
 
 @using GridMvc.Html
 <html>
@@ -15,25 +16,26 @@
 
     <script src="~/scripts/gridmvc.min.js"></script>
 
-    <title>Index</title>
 </head>
 <body>
 
-    <div style="width:1000px;background-color:blue;font-size:large;font-family:Arial;color:black">
-        @Html.Grid(Model).Columns(columns =>
+    @** <div style="width:1000px;background-color:blue;font-size:large;font-family:Arial;color:black">**@
+    <div class="jumbotron">
+        <center>
+            <h1>Mon panier </h1>
+            @Html.Grid(Model).Columns(columns =>
    {
    columns.Add(c => c.Designation).Titled("designation").Filterable(true);
    columns.Add(c => c.PrixU).Titled("Prix unitaire").Filterable(true);
    columns.Add(c => c.DateCmd).Titled("Date Commande").Filterable(true);
    columns.Add(c => c.QteArticle).Titled("Qantité d'article").Filterable(true);
-   columns.Add().Encoded(false).Sanitized(false).Titled("Image").Filterable(true).RenderValueAs(c => @<div style="width:40px;"><img alt="Image" src="~/Image/@Url.Content(c.photo)" )" height="120" width="100" /></div>);
+   columns.Add().Encoded(false).Sanitized(false).Titled("Image").Filterable(true).RenderValueAs(c => @<img alt="Image" src="~/Image/@Url.Content(c.photo)" )" height="120" width="100" />);
 
 
-   }).WithPaging(3).Sortable(true);
+         }).WithPaging(3).Sortable(true);
 
-
+        </center>
     </div>
 
 </body>
 </html>
-

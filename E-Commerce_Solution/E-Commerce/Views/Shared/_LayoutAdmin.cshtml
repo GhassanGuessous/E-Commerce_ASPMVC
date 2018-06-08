@@ -24,9 +24,9 @@
             <ul class="nav navbar-nav  navbar-right">
                 <li> @Html.ActionLink(" Commande", "Index", "Home", new { area = "" }, new { @class = "menucustom" })</li>
                 <li> @Html.ActionLink(" Catalogue", "Index", "Home", new { area = "" }, new { @class = "menucustom glyphicon glyphicon-folder-open" })</li>
-                <li> @Html.ActionLink(" Panier", "Index", "Home", new { area = "" }, new { @class = "menucustom glyphicon glyphicon-shopping-cart" })</li>
-                <li>  @Html.ActionLink(" Convertisseur", "Index", "Home", new { area = "" }, new { @class = "menucustom" })</li>
-                <li>@Html.ActionLink(" Se déconnecter", "Index", "Home", new { area = "" }, new { @class = "menucustom glyphicon glyphicon-off" })</li>
+                <li> @Html.ActionLink(" Panier", "Index", "Panier", new { area = "" }, new { @class = "menucustom glyphicon glyphicon-shopping-cart" })</li>
+                <li>  @Html.ActionLink("Convertisseur", "Index", "CurrencyConverter", new { area = "" }, new { @class = "menucustom" })</li>
+                <li>@Html.ActionLink("Déconnecter", "Logout", "Home", new { area = "" }, new { @class = "menucustom glyphicon glyphicon-off" })</li>
             </ul>
         </div>
     </nav>

@@ -7,137 +7,115 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using E_Commerce.Models;
-using System.Net.Http;
 
 namespace E_Commerce.Controllers
 {
-    public class ClientsController : Controller
+    public class ArticleController : Controller
     {
-
         private E_CommerceContext db = new E_CommerceContext();
 
-        // GET: Clients
-        public ActionResult Index(string clientnom, string searchString)
+        // GET: Article
+        public ActionResult Index()
         {
-            var nom = new List<string>();
-
-            var y = from d in db.Clients
-                    orderby d.Nom
-                    select d.Nom;
-
-            nom.AddRange(y.Distinct());
-
-            ViewBag.clientname = new SelectList(nom);
-
-            var cll = from m in db.Clients
-                      select m;
-
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                cll = cll.Where(s => s.Nom.Contains(searchString));
-            }
-
-            if (!string.IsNullOrEmpty(clientnom))
-            {
-                cll = cll.Where(x => x.Prenom == clientnom);
-            }
-
-            return View(cll);
+            var articles = db.Articles.Include(a => a.Categorie);
+            return View(articles.ToList());
         }
 
-        [HttpPost]
-        public string Index(FormCollection fc, string searchString)
-        {
-            return "<h3> From [HttpPost]Index: " + searchString + "</h3>";
-        }
-
-        // GET: Clients/Details/5
+        // GET: Article/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client cl = db.Clients.Find(id);
-            if (cl == null)
+            Article article = db.Articles.Find(id);
+            if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(cl);
+            return View(article);
         }
 
-        // GET: Clients/Create
+        // GET: Article/Create
         public ActionResult Create()
         {
+            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat");
             return View();
         }
 
-
+        // POST: Article/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "NumClient,Login,MotDePasse,Nom,Prenom,Email,Ville,Tel")] Client cl)
+        public ActionResult Create([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
         {
             if (ModelState.IsValid)
             {
-                db.Clients.Add(cl);
+                db.Articles.Add(article);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(cl);
+            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
+            return View(article);
         }
 
-        // GET: Clients/Edit/5
+        // GET: Article/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client cl = db.Clients.Find(id);
-            if (cl == null)
+            Article article = db.Articles.Find(id);
+            if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(cl);
+            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
+            return View(article);
         }
 
-
+        // POST: Article/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NumClient,Login,MotDePasse,Nom,Prenom,Email,Ville,Tel")] Client cl)
+        public ActionResult Edit([Bind(Include = "NumArticle,Designation,PrixU,Stock,Photo,RefCat")] Article article)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(cl).State = EntityState.Modified;
+                db.Entry(article).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(cl);
+            ViewBag.RefCat = new SelectList(db.Categories, "RefCat", "NomCat", article.RefCat);
+            return View(article);
         }
 
-        // GET: Clients/Delete/5
+        // GET: Article/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Client cl = db.Clients.Find(id);
-            if (cl == null)
+            Article article = db.Articles.Find(id);
+            if (article == null)
             {
                 return HttpNotFound();
             }
-            return View(cl);
+            return View(article);
         }
 
-        // POST: Clients/Delete/5
+        // POST: Article/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Client cl = db.Clients.Find(id);
-            db.Clients.Remove(cl);
+            Article article = db.Articles.Find(id);
+            db.Articles.Remove(article);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

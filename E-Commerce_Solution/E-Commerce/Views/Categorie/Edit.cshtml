@@ -1,21 +1,18 @@
 ﻿@model E_Commerce.Models.Categorie
 
-
 @{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     ViewBag.Title = "Edit";
 }
+
+<h2>Edit</h2>
+
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <h4 class="jumbotron text-center">Est-ce que vous etes sur  que vous voulez  modifier ce catégorie</h4>
-
-    <div class="form-inline">
-
-
-
+    
+    <div class="form-horizontal">
+        <h4>Categorie</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.RefCat)
@@ -35,9 +32,11 @@
         </div>
     </div>
 }
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

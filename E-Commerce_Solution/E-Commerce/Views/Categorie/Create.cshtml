@@ -1,25 +1,20 @@
 ﻿@model E_Commerce.Models.Categorie
 
-
 @{
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
 }
 
-@using (Html.BeginForm())
+<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-
-    <h4 class="jumbotron text-center">Est-ce que vous etes sur  que vous voulez  modifier ce catégorie</h4>
-
-    <div class="form-inline">
-
-
-
+    
+    <div class="form-horizontal">
+        <h4>Categorie</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.RefCat)
-
         <div class="form-group">
             @Html.LabelFor(model => model.NomCat, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -30,14 +25,16 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </div>
     </div>
 }
+
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
 
-
-
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

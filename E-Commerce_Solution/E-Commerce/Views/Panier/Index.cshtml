@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script>
+    $(function () {
+        $('#x').change(function (){
+            $.ajax({
+                type: "POST",
+                url: "/Panier/AfficheDetails",
+                datatype: "Json",
+                data: { value: $('#x').val() }
+                  }).done(function (data) {
+                $("#ici").html(data);
+            });
+
+
+        });
+    });
+
+</script>
+
+<div class="jumbotron">
+    <center>
+        <h1>Consultation de catalogue</h1>
+
+        <h4 style="color:cornflowerblue">Toutes nos catégories</h4>
+        <br />
+        <br />
+        <h5>@Html.DropDownList("x", ViewBag.e as SelectList, "Selectionner categorie")</h5>
+
+
+        <div id="ici">
+
+        </div>
+    </center>
+</div>
+

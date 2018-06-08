@@ -4,7 +4,18 @@
 <div class="pull-left">
     <br />
     <img src="~/Image/@Url.Content(ViewBag.photo)" height="350" width="350" />
-   
+    @using (Html.BeginForm("FileUpload", "Articles", FormMethod.Post,
+                  new { enctype = "multipart/form-data" }))
+    { 
+        @Html.HiddenFor(model => model.NumArticle)
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="file" name="file" id="file" style="width: 100%;" /> <br />
+            <input type="submit" value="Modifier Votre propre Image" class="btn btn-default" />
+        </div>
+    </div>
+
+}
 </div>
 <div class="snip1265 pull-right">
     <br /><br />

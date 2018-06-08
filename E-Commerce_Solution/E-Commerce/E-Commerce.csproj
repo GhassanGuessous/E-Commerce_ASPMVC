@@ -177,6 +177,7 @@
     <Compile Include="Controllers\CommandesController.cs" />
     <Compile Include="Controllers\CurrencyConverterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PanierController.cs" />
     <Compile Include="Controllers\StatistiquesController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Global.asax.cs">
@@ -253,6 +254,7 @@
     <Content Include="images\templateOne\logo1.png" />
     <Content Include="Image\1435181529224.jpg" />
     <Content Include="Image\images.png" />
+    <Content Include="Image\vide.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -323,12 +325,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_GridPager.cshtml" />
     <Content Include="Views\Shared\_Grid.cshtml" />
-    <Content Include="Views\Clients\Create.cshtml" />
-    <Content Include="Views\Clients\Delete.cshtml" />
-    <Content Include="Views\Clients\Details.cshtml" />
-    <Content Include="Views\Clients\Edit.cshtml" />
-    <Content Include="Views\Articles\Create.cshtml" />
-    <Content Include="Views\Articles\Delete.cshtml" />
     <Content Include="Views\Articles\Details.cshtml" />
     <Content Include="Views\Articles\Edit.cshtml" />
     <Content Include="Views\Articles\Index.cshtml" />
@@ -343,10 +339,7 @@
     <Content Include="Views\Commandes\Index.cshtml" />
     <Content Include="Views\CurrencyConverter\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutIndex.cshtml" />
-    <Content Include="Views\Clients\Index.cshtml" />
     <Content Include="Views\Shared\_AfficheDetails.cshtml" />
-    <Content Include="Views\Clients\Detail.cshtml" />
-    <Content Include="Views\Clients\Index_Panier.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Views\Categories\Edit.cshtml" />
     <Content Include="Views\Statistiques\Index.cshtml" />
@@ -354,6 +347,16 @@
     <Content Include="Views\Home\Accueil.cshtml" />
     <Content Include="Views\Shared\_AffichesCategrie.cshtml" />
     <Content Include="Views\Shared\_AffichesArticles.cshtml" />
+    <Content Include="Views\Articles\Create.cshtml" />
+    <Content Include="Views\Articles\Delete.cshtml" />
+    <Content Include="Views\Clients\Index.cshtml" />
+    <Content Include="Views\Clients\Create.cshtml" />
+    <Content Include="Views\Clients\Edit.cshtml" />
+    <Content Include="Views\Clients\Delete.cshtml" />
+    <Content Include="Views\Clients\Details.cshtml" />
+    <Content Include="Views\Panier\Index.cshtml" />
+    <Content Include="Views\Panier\Get_panier.cshtml" />
+    <Content Include="Views\Panier\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

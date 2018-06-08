@@ -1,38 +1,106 @@
-﻿@{Layout = null;
+﻿@model IEnumerable<E_Commerce.Models.Client>
+
+@{
+  
     ViewBag.Title = "Index";
 }
+<br />
+<br />
+<p>
+    @Html.ActionLink("Ajouter un nouveau client", "Create")
+    @using (Html.BeginForm("Index", "Client", FormMethod.Get))
+
+    {
 
 
-<script src="~/scripts/jquery-1.10.2.min.js"></script>
+    }
 
-<script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
 
-<script>
-        $(function () {
-            $('#x').change(function (){
-                $.ajax({
-                    type: "POST",
-                    url: "/Clients/AfficheDetails",
-                    datatype: "Json",
-                    data: { value: $('#x').val() }
-                      }).done(function (data) {
-                    $("#ici").html(data);
-                });
+    <table class="table" id="clienttable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumClient)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Login)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MotDePasse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Nom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Prenom)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Ville)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Tel)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NumClient)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Login)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.MotDePasse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Prenom)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Ville)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tel)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.NumClient }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.NumClient }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.NumClient })
+                    </td>
+                </tr>
+            }
+        </tbody>
 
+    </table>
+
+    <link href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet" />
+
+    @section scripts{
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+
+        <script>
+            function activatejQueryTable() {
+                $("#clienttable").DataTable();
+            }
+
+            $(function () {
+                activatejQueryTable();
             });
-        });
 
-</script>
-
-<h2>Index</h2>
-<div> choisir une catégorie: @Html.DropDownList("x", ViewBag.e as SelectList, "Selectionner categorie") </div>
-
-<div id="ici">
-
-</div>
-
-
-
-
-
-
+        </script>
+    }

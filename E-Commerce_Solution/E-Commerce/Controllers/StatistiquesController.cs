@@ -10,31 +10,48 @@ namespace E_Commerce.Controllers
 {
     public class StatistiquesController : Controller
     {
-        HttpClient client = new HttpClient();
-        HttpResponseMessage response;
-        IEnumerable<Categorie> listcategorie;
-        IEnumerable<Article> listarticles;
+      
+        private E_CommerceContext db = new E_CommerceContext();
         public ActionResult Index()
         {
             return View();
         }
-        public void Conction()
-        {
-            client.BaseAddress = new Uri("http://localhost:59467");
-            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-
-        }
+    
         public JsonResult GetData()
             {
-            Conction();
-           IEnumerable<NumberCommandePerArticle> Details = new List<NumberCommandePerArticle>();
-            response = client.GetAsync("api/Statistique").Result;
-            Details = response.Content.ReadAsAsync<IEnumerable<NumberCommandePerArticle>>().Result;
+            List<NumberCommandePerArticle> prod = new List<NumberCommandePerArticle>();
+            var query = from c in db.Articles
+                        join p in db.Commandes
+                        on c.NumArticle equals p.NumArticle
+                        group new { c, p } by new { c.Designation} into g
+                        select new
+                        {
+                            NumberCommande = g.Count(),
+                            NumArticle = g.Key.Designation,
 
-         
-            return Json(Details, JsonRequestBehavior.AllowGet);
+                        };
+
+
+            foreach (var i in query)
+            {
+                NumberCommandePerArticle articlecommande = new NumberCommandePerArticle();
+
+                articlecommande.NumberCommande = i.NumberCommande;
+           
+                articlecommande.ArticleName = i.NumArticle;
+                prod.Add(articlecommande);
             }
+
+
+
+
+            return Json(prod, JsonRequestBehavior.AllowGet);
+            }
+        Article GetArticle(int numero)
+        {return db.Articles.Find(numero);
+
+        }
+
 
 
         }
