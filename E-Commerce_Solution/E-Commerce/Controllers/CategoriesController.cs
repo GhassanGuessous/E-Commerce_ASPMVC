@@ -11,6 +11,7 @@ using E_Commerce.Models;
 
 namespace E_Commerce.Controllers
 {
+
     public class CategoriesController : Controller
     {
         HttpClient client = new HttpClient();

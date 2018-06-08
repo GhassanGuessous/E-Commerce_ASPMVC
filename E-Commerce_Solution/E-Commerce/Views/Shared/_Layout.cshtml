@@ -35,11 +35,10 @@
                         @Html.ActionLink("Accueil", "Accueil", "Home", "", new { @class = "nav-link active" })
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Consulter les catalogues", "Index", "Clients", new { @class = "nav-link" })
+                        @Html.ActionLink("Consulter les catalogues", "Index", "Panier", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
-
-                        @Html.ActionLink("Visualiser votre panier", "Index_Panier", "Clients", new { @class = "nav-link" })
+                        @Html.ActionLink("Visualiser votre panier", "Get_panier", "Panier", new { @class = "nav-link" })
                     </li>
                     <li class="nav-item">
                        @Html.ActionLink("Convertisseur", "Index", "CurrencyConverter",  "", new { @class = "nav-link" })
