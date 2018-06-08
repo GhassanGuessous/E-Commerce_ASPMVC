@@ -11,10 +11,7 @@ namespace WebAPI_E_Commerce.Controllers
     public class HomeController : Controller
     {
         public ActionResult Index()
-        {
-         
-
-
+        {         
             ViewBag.Title = "Home Page";
 
             return View();

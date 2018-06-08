@@ -55,7 +55,11 @@ namespace E_Commerce.Controllers
                 var message = client.GetAsync("api/Auth/Login?l="+c.Login+"&m="+c.MotDePasse).Result;
 
                 if (message.StatusCode == HttpStatusCode.OK)
+                {
+                    Session["ConnecedClientId"] = (message.Content.ReadAsAsync<Client>().Result).NumClient;
                     return View("Accueil");
+                }
+                    
                 else
                 {
                     ViewData["erreurAuth"] = "erreurAuth";

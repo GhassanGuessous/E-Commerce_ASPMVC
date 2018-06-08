@@ -17,6 +17,7 @@ namespace E_Commerce.Controllers
         HttpResponseMessage response;
         IEnumerable<Categorie> listcategorie;
         IEnumerable<Article> listarticles;
+        private E_CommerceContext context = new E_CommerceContext();
     
 
         public void Conction()
@@ -30,7 +31,7 @@ namespace E_Commerce.Controllers
         {
             Conction();
             response = client.GetAsync("api/Categorie").Result;
-            listcategorie = response.Content.ReadAsAsync<IEnumerable<Categorie>>().Result;
+            listcategorie = context.Categories.ToList(); //response.Content.ReadAsAsync<IEnumerable<Categorie>>().Result;
             return View(listcategorie);
         }
 
