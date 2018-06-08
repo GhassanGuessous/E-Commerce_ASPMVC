@@ -48,6 +48,42 @@
 <!--end login-->
 
 
+<!--Login-->
+<div id="id02" class="modal">
+
+    @using (Html.BeginForm("AdminPanel", "Home", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="modal-content animate">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id02').style.display='none'" class="close" title="Close Modal">&times;</span>
+                <img src="~/images/templateOne/AdminPanel.png" alt="Avatar" class="avatar">
+            </div>
+
+            <div class="containerPopup">
+                @Html.LabelFor(model => model.Login)
+                @Html.EditorFor(model => model.Login, new { htmlAttributes = new { @class = "form-control", placeholder = "Login" } })
+                @Html.ValidationMessageFor(model => model.Login, "", new { @class = "text-danger" })
+
+                <br />
+
+                @Html.LabelFor(model => model.MotDePasse)
+                @Html.PasswordFor(model => model.MotDePasse, new { htmlAttributes = new { @class = "form-control", placeholder = "Mot de passe" } })
+                @Html.ValidationMessageFor(model => model.MotDePasse, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="containerFooter" style="background-color:#f1f1f1">
+                <input type="submit" value="Login" class="btn btn-success" />
+                <button type="button" onclick="document.getElementById('id02').style.display='none'" class="btn btn-primary">Cancel</button>
+            </div>
+        </div>
+    }
+</div>
+<!--end login-->
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

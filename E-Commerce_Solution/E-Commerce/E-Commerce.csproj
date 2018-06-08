@@ -248,6 +248,7 @@
     <Content Include="images\folder.png" />
     <Content Include="images\france.png" />
     <Content Include="images\frigo.jpg" />
+    <Content Include="images\templateOne\AdminPanel.png" />
     <Content Include="images\templateOne\bg.jpg" />
     <Content Include="images\templateOne\logo.png" />
     <Content Include="images\templateOne\logo1.png" />

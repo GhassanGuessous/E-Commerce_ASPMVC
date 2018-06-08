@@ -67,7 +67,6 @@ namespace E_Commerce
                      "~/Scripts/TemplateOne/scripts.js",
                      "~/Scripts/jquery-{version}.js",
                      "~/Scripts/jquery.validate*",
-                     "~/Url/https://unpkg.com/sweetalert/dist/sweetalert.min.js",
                      "~/Scripts/commandeJs.js"
 
                      ));
