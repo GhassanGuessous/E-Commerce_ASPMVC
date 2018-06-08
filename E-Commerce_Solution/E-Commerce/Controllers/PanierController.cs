@@ -65,10 +65,12 @@ namespace E_Commerce.Controllers
         {
 
             List<MonPanier> prod = new List<MonPanier>();
-            
+            int numClient = Session["ConnecedClientId"] != null ? Int32.Parse(Session["ConnecedClientId"].ToString()) : 0;
+
+
             var x = (from c in db.Commandes
                      join d in db.Articles on c.NumArticle equals d.NumArticle
-                     where c.NumClient == Int32.Parse(Session["ConnecedClientId"].ToString())
+                     where c.NumClient == numClient
                      select new { c.QteArticle, c.DateCmd, d.Designation, d.PrixU, d.Photo, });
             MonPanier panier;
             foreach (var i in x)
