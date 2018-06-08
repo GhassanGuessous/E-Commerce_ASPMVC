@@ -64,15 +64,20 @@ namespace E_Commerce
                      "~/Scripts/TemplateOne/isotope.pkgd.min.js",
                      "~/Scripts/TemplateOne/YouTubePopUp.jquery.js",
                      "~/Scripts/TemplateOne/map.js",
-                     "~/Scripts/TemplateOne/scripts.js"
+                     "~/Scripts/TemplateOne/scripts.js",
+                     "~/Scripts/jquery-{version}.js",
+                     "~/Scripts/jquery.validate*",
+                     "~/Url/https://unpkg.com/sweetalert/dist/sweetalert.min.js",
+                     "~/Scripts/commandeJs.js"
+
                      ));
 
             // Commande
-            bundles.Add(new ScriptBundle("~/bundles/CommandeAjax").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery.validate*",
-                "~/Url/https://unpkg.com/sweetalert/dist/sweetalert.min.js",
-                "~/Scripts/commandeJs.js"));
+            //bundles.Add(new ScriptBundle("~/bundles/CommandeAjax").Include(
+            //    "~/Scripts/jquery-{version}.js",
+            //    "~/Scripts/jquery.validate*",
+            //    "~/Url/https://unpkg.com/sweetalert/dist/sweetalert.min.js",
+            //    "~/Scripts/commandeJs.js"));
 
         }
     }
